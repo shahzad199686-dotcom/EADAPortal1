@@ -1,0 +1,332 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Environment Audit Designated Agency (EADA) - Precise Reference Branding" />
+    <title>EADA | Environment Audit Designated Agency</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --forest-green: #0b6623;
+            --forest-green-dark: #005a2b;
+            --accent-yellow: #f59e0b;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --container-w: 1280px;
+            --hero-bg: #4b4b4b; /* Charcoal from reference */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: #fdfdfd; line-height: 1.5; overflow-x: hidden; }
+        
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        
+        .container { max-width: var(--container-w); margin: 0 auto; padding: 0 1.5rem; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+        /* --- 1. Top Government Identity (Slim White/Light Strip) --- */
+        .gov-strip {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.3rem 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .gov-strip-inner { display: flex; justify-content: space-between; align-items: center; }
+        .gov-left { display: flex; align-items: center; gap: 0.75rem; }
+        .flag-box { width: 18px; height: 12px; border: 1px solid #ddd; background: linear-gradient(#FF9933 33.3%, #ffffff 33.3% 66.6%, #128807 66.6%); }
+
+        /* --- 2. White Logo / Branding Strip --- */
+        .branding-strip {
+            padding: 1rem 0;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+        .branding-inner { display: flex; justify-content: space-between; align-items: center; }
+        
+        .brand-logos-left { display: flex; align-items: center; gap: 1rem; }
+        .logo-group { display: flex; align-items: center; gap: 0.75rem; }
+        .mini-logo { 
+            width: 52px; height: 52px; border-radius: 50%; background: #f3f4f6; 
+            border: 1px solid #e5e7eb; display: grid; place-items: center; font-size: 0.5rem; text-align: center; color: #9ca3af;
+            flex-shrink: 0;
+        }
+
+        .brand-titles { text-align: left; margin-left: 0.5rem; }
+        .brand-titles h1 { font-size: 1.85rem; font-weight: 900; color: #1f2937; line-height: 1; letter-spacing: -0.01em; }
+        .brand-titles p { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-top: 4px; }
+
+        .brand-right { display: flex; align-items: center; gap: 1.25rem; }
+        .badge-logo { height: 42px; width: 65px; display: grid; place-items: center; }
+        .badge-logo img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .mini-logo img { max-height: 80%; max-width: 80%; object-fit: contain; }
+        
+        /* Language/Accessibility Dropdown like reference Blue */
+        .util-dropdown {
+            background: #004a99; color: white; padding: 0.4rem 0.8rem; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer;
+        }
+
+        /* --- 3. Green Navigation Bar --- */
+        .navbar-wrap { background: var(--forest-green-dark); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 52px; }
+        
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
+        .nav-link { 
+            text-decoration: none; color: #ffffff; font-size: 0.9rem; font-weight: 600; 
+            display: flex; align-items: center; gap: 5px; opacity: 0.95; transition: 0.2s;
+        }
+        .nav-link:hover { opacity: 1; }
+        .nav-link i { font-size: 1rem; }
+
+        .btn-portal-nav {
+            background: white; color: var(--forest-green-dark); padding: 0.45rem 1.25rem;
+            border-radius: 4px; font-weight: 800; text-decoration: none; font-size: 0.85rem;
+            transition: 0.2s; display: flex; align-items: center; gap: 6px;
+        }
+        .btn-portal-nav:hover { background: #f0fdf4; transform: translateY(-1px); }
+
+        /* --- 4. News Ticker Strip --- */
+        .news-strip { background: #f0fdf4; border-bottom: 1px solid #dcfce7; padding: 0.6rem 0; font-size: 0.85rem; }
+        .news-inner { display: flex; align-items: center; gap: 1.5rem; }
+        .news-badge { background: #b91c1c; color: white; padding: 2px 8px; border-radius: 2px; font-weight: 800; font-size: 0.7rem; }
+        .news-text { color: #166534; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* --- 5. Hero Section (Precise Rebuild) --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://www.transparenttextures.com/patterns/natural-paper.png'), var(--hero-bg);
+            background-size: cover;
+            padding: 5rem 0 6rem;
+            position: relative;
+            color: #ffffff;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; width: 100%; }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700;
+            display: inline-flex; align-items: center; gap: 8px; margin-bottom: 2rem;
+        }
+
+        .hero h2 { font-size: 4.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 900; max-width: 750px; }
+        .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2.5rem; max-width: 580px; }
+
+        .hero-btn {
+            background: #ffffff; color: var(--forest-green-dark); padding: 0.85rem 2.25rem;
+            border-radius: 4px; font-weight: 800; text-decoration: none; font-size: 0.95rem;
+            display: inline-block; transition: 0.3s;
+        }
+        .hero-btn:hover { background: #f3f4f6; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
+
+        /* Floating Update Card */
+        .floating-card {
+            background: rgba(45, 45, 45, 0.65); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            padding: 1.75rem; width: 340px; margin-left: auto;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .card-num-row { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem; opacity: 0.8; }
+        .card-progress { height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 1.5rem; overflow: hidden; }
+        .progress-bar { height: 100%; background: #22c55e; width: 50%; }
+
+        .update-tag { background: #ffffff; color: #1f2937; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-bottom: 0.75rem; display: inline-block; }
+        .card-date { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-left: 8px; }
+        
+        .card-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .card-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+        /* Pagination Dots */
+        .slider-dots {
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 0.75rem;
+        }
+        .dot { width: 40px; height: 6px; border-radius: 10px; background: rgba(255,255,255,0.2); transition: 0.3s; }
+        .dot.active { background: #22c55e; width: 60px; }
+
+        /* --- Footer & Cards (Maintained) --- */
+        .modules-section { padding: 5rem 0; background: #f8fafc; }
+        .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .mod-card { background: white; border-radius: 12px; padding: 3rem; border: 1px solid #e5e7eb; transition: 0.3s; }
+        .mod-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
+
+        footer { background: #012a14; color: white; padding: 5rem 0 3rem; }
+
+        /* --- Responsiveness --- */
+        @@media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero h2 { font-size: 3rem; margin: 0 auto 2rem; }
+            .hero p { margin: 0 auto 2.5rem; }
+            .floating-card { margin: 0 auto; }
+            .branding-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .brand-logos-left { justify-content: center; }
+            .brand-right { justify-content: center; }
+            .nav-inner { flex-direction: column; height: auto; padding: 1rem 0; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Top Government Identity Strip -->
+    <div class="gov-strip">
+        <div class="container gov-strip-inner">
+            <div class="gov-left">
+                <div class="flag-box"></div>
+                <span>भारत सरकार | Government of India</span>
+            </div>
+            <div class="brand-right" style="gap: 1rem;">
+                <span style="border-right: 1px solid #ccc; padding-right: 10px;">A- A A+</span>
+                <div class="util-dropdown">EN ▾</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. White Logo / Branding Strip -->
+    <div class="branding-strip">
+        <div class="container branding-inner">
+            <div class="brand-logos-left">
+                <div class="logo-group">
+                    <div class="mini-logo">
+                        <img src="/images/branding/logo_emblem.png" alt="Emblem" onerror="this.style.opacity='0'; this.nextElementSibling.style.display='flex';" />
+                        <span class="logo-fallback" style="display:none;">Emblem</span>
+                    </div>
+                    <div class="mini-logo">
+                        <img src="/images/branding/logo_eada.png" alt="EADA" onerror="this.style.opacity='0'; this.nextElementSibling.style.display='flex';" />
+                        <span class="logo-fallback" style="display:none;">EADA Logo</span>
+                    </div>
+                </div>
+                <div class="brand-titles">
+                    <h1>EADA</h1>
+                    <p>Environment Audit Designated Agency</p>
+                </div>
+            </div>
+            <div class="brand-right">
+                <div class="badge-logo">
+                    <img src="/images/branding/logo_azadi.png" alt="Azadi" onerror="this.style.opacity='0'; this.nextElementSibling.style.display='flex';" />
+                    <span class="logo-fallback" style="display:none;">Azadi 75</span>
+                </div>
+                <div class="badge-logo">
+                    <img src="/images/branding/logo_life.png" alt="LiFE" onerror="this.style.opacity='0'; this.nextElementSibling.style.display='flex';" />
+                    <span class="logo-fallback" style="display:none;">LiFE</span>
+                </div>
+                <div class="badge-logo">
+                    <img src="/images/branding/logo_npc.png" alt="NPC" onerror="this.style.opacity='0'; this.nextElementSibling.style.display='flex';" />
+                    <span class="logo-fallback" style="display:none;">NPC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Forest Green Navigation Bar -->
+    <nav class="navbar-wrap">
+        <div class="container nav-inner">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">🏠 Home</a></li>
+                <li><a href="#" class="nav-link">About EADA ▾</a></li>
+                <li><a href="#" class="nav-link">Structure &amp; Governance ▾</a></li>
+                <li><a href="#" class="nav-link">Guidelines ▾</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="#" class="btn-portal-nav">🗝️ Portal</a>
+        </div>
+    </nav>
+
+    <!-- 4. News Strip -->
+    <div class="news-strip">
+        <div class="container news-inner">
+            <div class="news-badge">NEWS</div>
+            <div class="news-text">
+                📢 Online training module for REA candidates now available on LMS portal...
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Hero Section (Precise Reference) -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">🏛️ Government of India Initiative</div>
+                    <h2>Transforming Environmental Compliance Across India</h2>
+                    <p>Ensuring environmental compliance and sustainable development through rigorous auditing, certification, and regulatory oversight.</p>
+                    <a href="#" class="hero-btn">Access Portal</a>
+                </div>
+                
+                <div class="hero-sidebar">
+                    <div class="floating-card">
+                        <div class="card-num-row">
+                            <span>05</span>
+                            <span>10</span>
+                        </div>
+                        <div class="card-progress"><div class="progress-bar"></div></div>
+                        <div class="update-tag">Update</div>
+                        <span class="card-date">Dec 11, 2026</span>
+                        <h4 class="card-title">Real-time Tracking Available</h4>
+                        <p class="card-desc">New Feature: Track your application status and environmental audit progress in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </section>
+
+    <!-- 6. Modules Section -->
+    <section class="modules-section">
+        <div class="container">
+            <div class="mod-grid">
+                <article class="mod-card">
+                    <h3 style="font-size: 1.8rem; color: var(--forest-green-dark); margin-bottom: 1rem;">Recognition of Prior Learning (CEA RPL)</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">A dedicated portal for existing environmental professionals to certify their expertise and align with the EADA framework.</p>
+                    <span style="display: inline-block; padding: 6px 14px; background: #fffbeb; color: #92400e; border-radius: 6px; font-weight: 800; font-size: 0.8rem;">⏳ Coming Soon</span>
+                </article>
+
+                <article class="mod-card">
+                    <h3 style="font-size: 1.8rem; color: var(--forest-green-dark); margin-bottom: 1rem;">Registered Environmental Auditor (REA)</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Official registry and auditing management system for environmental compliance monitoring across industrial sectors.</p>
+                    <span style="display: inline-block; padding: 6px 14px; background: #f0fdf4; color: #166534; border-radius: 6px; font-weight: 800; font-size: 0.8rem;">⏳ Coming Soon</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+                <div>
+                    <h3 class="serif" style="font-size: 1.75rem; margin-bottom: 1.5rem;">EADA Portal</h3>
+                    <p style="opacity: 0.7; max-width: 500px; font-size: 0.95rem;">Empowered oversight for a sustainable nation. EADA is an initiative of the Ministry of Environment, Forest and Climate Change, Government of India.</p>
+                </div>
+                <div style="text-align: right;">
+                    <h4 style="margin-bottom: 1.5rem;">Support</h4>
+                    <p style="opacity: 0.7; font-size: 0.9rem;">helpdesk&#64;eada.gov.in</p>
+                    <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 0.5rem;">+91 11 2345 6789</p>
+                </div>
+            </div>
+            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; opacity: 0.5; text-align: center;">
+                &copy; 2026 Environment Audit Designated Agency. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
