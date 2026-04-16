@@ -30,8 +30,10 @@
         
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
         
-        .container { max-width: var(--container-w); margin: 0 auto; padding: 0 1.5rem; }
+        .container { max-width: var(--container-w); margin: 0 auto; padding: 0 1.5rem; width: 100%; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+        html, body { overflow-x: hidden; width: 100%; }
 
         /* --- 1. Top Government Identity --- */
         .gov-strip {
@@ -55,9 +57,9 @@
         .branding-inner { display: flex; justify-content: space-between; align-items: center; }
         .brand-logos-left { display: flex; align-items: center; gap: 1rem; }
         .logo-group { display: flex; align-items: center; gap: 0.75rem; }
-        .brand-titles { text-align: left; margin-left: 0.5rem; }
-        .brand-titles h1 { font-size: 1.85rem; font-weight: 900; color: #1f2937; line-height: 1; letter-spacing: -0.01em; }
-        .brand-titles p { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-top: 4px; }
+        .brand-titles { text-align: left; margin-left: 0.5rem; flex: 1; }
+        .brand-titles h1 { font-size: 1.85rem; font-weight: 900; color: #1f2937; line-height: 1; letter-spacing: -0.01em; margin: 0; }
+        .brand-titles p { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-top: 4px; line-height: 1.2; }
 
         .brand-right { display: flex; align-items: center; gap: 1.5rem; }
         .badge-logo, .mini-logo { position: relative; display: flex; align-items: center; justify-content: center; }
@@ -90,6 +92,25 @@
         .nav-item-dropdown:hover .dropdown-menu { display: block; }
         .dropdown-item { display: block; padding: 0.75rem 1.25rem; color: #1f2937; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-align: left; }
         .dropdown-item:hover { background: #f0fdf4; color: var(--forest-green-dark); }
+
+        /* --- Mobile Toggle --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
 
         /* --- 4. Notice Strip --- */
         .notice-strip { display: flex; align-items: center; background: #e0f2fe; border-bottom: 1px solid #bae6fd; font-size: 0.85rem; height: 38px; overflow: hidden; }
@@ -154,12 +175,77 @@
         /* Responsiveness */
         @@media (max-width: 1024px) {
             .hero { grid-template-columns: 1fr; }
-            .hero-right { padding: 2rem; }
-            .about-split { flex-direction: column; gap: 4rem; }
-            .about-left { max-width: 100%; flex: none; }
-            .about-section::before { width: 100%; height: 40%; top: auto; bottom: 0; clip-path: polygon(0% 25%, 100% 0%, 100% 100%, 0% 100%); }
-            .mod-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
-            .about-title { font-size: 2.5rem; }
+            .hero-right { padding: 3rem 2rem; }
+            .about-split { gap: 3rem; }
+            .about-left { flex: 0 0 350px; }
+            .about-title { font-size: 2.8rem; }
+        }
+
+        @@media (max-width: 768px) {
+            .gov-strip-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .brand-right { gap: 0.75rem !important; }
+
+            .branding-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .brand-logos-left { flex-direction: column; width: 100%; justify-content: center; gap: 1rem; }
+            .logo-group { justify-content: center; }
+            .brand-titles { margin-left: 0; text-align: center; }
+            .brand-right { width: 100%; justify-content: center; border-top: 1px solid #eee; padding-top: 1.5rem; flex-wrap: wrap; }
+
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--forest-green-dark);
+                flex-direction: column;
+                padding: 80px 2rem 2rem;
+                transition: 0.3s;
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { right: 0; }
+            .nav-link { font-size: 1.1rem; width: 100%; }
+            
+            .nav-item-dropdown .dropdown-menu {
+                position: static;
+                background: rgba(255,255,255,0.05);
+                border: none;
+                box-shadow: none;
+                margin-top: 10px;
+                display: none;
+            }
+            .nav-item-dropdown.active .dropdown-menu { display: block; }
+            .dropdown-item { color: white; padding: 10px 15px; }
+
+            .hero-left { min-height: 400px; }
+            .hero-right { padding: 4rem 2rem; }
+            .eada-logo-minimal img { width: 220px; }
+
+            .mod-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .mod-pill-card { border-radius: 40px; padding: 1rem; }
+            .mod-icon-box { width: 60px; height: 60px; }
+
+            .about-section { padding: 4rem 0; }
+            .about-split { flex-direction: column; gap: 2.5rem; }
+            .about-left { flex: none; width: 100%; max-width: 100%; }
+            .about-image-wrap { max-width: 400px; margin: 0 auto; }
+            .about-title { font-size: 2.2rem; }
+            .about-section::before { width: 100%; height: 30%; top: auto; bottom: 0; clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 100%); }
+
+            footer div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 2rem !important; text-align: center; }
+            footer div[style*="text-align: right"] { text-align: center !important; }
+        }
+
+        @@media (max-width: 576px) {
+            .brand-titles h1 { font-size: 1.4rem; }
+            .brand-titles p { font-size: 0.7rem; }
+            .logo-group .mini-logo { width: 44px; height: 44px; }
+            .badge-logo { height: 32px; min-width: 50px; }
+            .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
+            .about-title { font-size: 1.8rem; }
+            .hero-left { min-height: 300px; }
         }
     </style>
 </head>
@@ -200,12 +286,17 @@
 
     <nav class="navbar-wrap">
         <div class="container nav-inner">
-            <ul class="nav-links">
+            <button class="menu-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="#" class="nav-link">Home</a></li>
                 <li><a href="#" class="nav-link">About EADA</a></li>
                 <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link">Rules</a></li>
                 <li class="nav-item-dropdown">
-                    <a href="#" class="nav-link">Guidelines ▾</a>
+                    <a href="#" class="nav-link nav-dropdown-trigger">Guidelines ▾</a>
                     <div class="dropdown-menu">
                         <a href="~/docs/guideline for cea through rpl.pdf" target="_blank" class="dropdown-item">Guideline for CEA through RPL</a>
                         <a href="~/docs/guideline for rea.pdf" target="_blank" class="dropdown-item">Guideline for REA</a>
@@ -277,9 +368,8 @@
                     <div class="about-label-row"><span class="about-label">Who We Are</span><div class="about-divider"></div></div>
                     <h2 class="about-title">About Environment Audit Designated Agency</h2>
                     <div class="about-content-body">
-                        <p>The Environment Audit Designated Agency (EADA) is a role established under the Environment Audit Rules, 2025 by the Ministry of Environment, Forest and Climate Change (MoEF&CC). EADA is responsible for the overall management of the environmental audit framework in India.</p>
-                        <p>The framework strengthens compliance with major environmental legislations, supporting regulatory approvals such as Environmental Clearance (EC) and Consent to Operate (CTO) via a robust auditing infrastructure.</p>
-                        <a href="#" class="about-btn">Read More</a>
+                        <p>The Environment Audit Designated Agency (EADA) is a role established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.</p>
+                        <p>The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder.</p>
                     </div>
                 </div>
             </div>
@@ -303,6 +393,23 @@
             </div>
         </div>
     </footer>
+
+    <script shadow>
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Dropdown toggle for mobile
+        document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
