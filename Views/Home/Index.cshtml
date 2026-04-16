@@ -213,14 +213,23 @@
         }
 
         @@media (max-width: 768px) {
-            .gov-strip-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
-            .brand-right { gap: 0.75rem !important; }
-
-            .branding-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .brand-logos-left { flex-direction: column; width: 100%; justify-content: center; gap: 1rem; }
-            .brand-titles { margin-left: 0; text-align: center; }
-            .brand-titles h1 { font-size: 1.5rem; }
-            .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 1.5rem; flex-wrap: wrap; }
+            .gov-strip { padding: 0.25rem 0; }
+            .gov-strip-inner { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 0.25rem; }
+            .gov-left { gap: 0.5rem; }
+            .gov-left span { font-size: 0.65rem; }
+            .gov-strip-inner .brand-right { gap: 0.5rem !important; }
+            .gov-strip-inner .brand-right > span { font-size: 0.65rem; padding-right: 8px; }
+            .util-dropdown-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
+            
+            .branding-strip { padding: 0.5rem 0; }
+            .branding-inner { flex-direction: column; gap: 0.5rem; }
+            .brand-logos-left { flex-direction: row; width: 100%; justify-content: center; align-items: center; gap: 0.75rem; }
+            .logo-group .mini-logo { width: 42px; height: 42px; }
+            .brand-titles { margin-left: 0; text-align: left; }
+            .brand-titles h1 { font-size: 1.4rem; }
+            .brand-titles p { font-size: 0.7rem; margin-top: 0; }
+            .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
+            .badge-logo { height: 32px; min-width: 45px; }
 
             .menu-toggle { display: flex; }
             .nav-inner { display: flex; align-items: center; height: 100%; }
@@ -265,10 +274,21 @@
         }
 
         @@media (max-width: 576px) {
-            .brand-titles h1 { font-size: 1.4rem; }
-            .brand-titles p { font-size: 0.7rem; }
-            .logo-group .mini-logo { width: 44px; height: 44px; }
-            .badge-logo { height: 32px; min-width: 50px; }
+            .gov-strip-inner { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 0.25rem; padding-bottom: 0; }
+            .gov-left { gap: 0.35rem; }
+            .gov-left span { font-size: 0.55rem; white-space: nowrap; }
+            .gov-strip-inner .brand-right { width: auto; justify-content: flex-end; gap: 0.4rem !important; }
+            .gov-strip-inner .brand-right > span { font-size: 0.55rem; padding-right: 5px; }
+            .util-dropdown-btn { padding: 0.2rem 0.5rem; font-size: 0.65rem; }
+            
+            .brand-logos-left { flex-direction: row; align-items: center; justify-content: center; gap: 0.5rem; }
+            .logo-group { gap: 0.4rem; }
+            .logo-group .mini-logo { width: 34px; height: 34px; }
+            .brand-titles { text-align: left; }
+            .brand-titles h1 { font-size: 1.25rem; }
+            .brand-titles p { font-size: 0.65rem; line-height: 1.2; }
+            .branding-inner .brand-right { gap: 0.75rem; padding-top: 0.5rem; }
+            .badge-logo { height: 26px; min-width: 38px; }
             .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
             .about-title { font-size: 1.8rem; }
             .hero-left { min-height: 300px; }
@@ -305,7 +325,7 @@
                 </div>
                 <div class="brand-titles">
                     <h1>EADA</h1>
-                    <p>Environment Audit Designated Agency</p>
+                    <p data-i18n="brandEada">Environment Audit Designated Agency</p>
                 </div>
             </div>
             <div class="brand-right">
@@ -324,25 +344,25 @@
                 <span></span>
             </button>
             <ul class="nav-links" id="nav-menu">
-                <li><a href="/" class="nav-link">Home</a></li>
-                <li><a href="#about-section" class="nav-link">About EADA</a></li>
-                <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link">Rules</a></li>
+                <li><a href="/" class="nav-link" data-i18n="navHome">Home</a></li>
+                <li><a href="#about-section" class="nav-link" data-i18n="navAbout">About EADA</a></li>
+                <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link" data-i18n="navRules">Environment Audit Rules</a></li>
                 <li class="nav-item-dropdown">
-                    <a href="#" class="nav-link nav-dropdown-trigger" onclick="return false;">Guidelines ▾</a>
+                    <a href="#" class="nav-link nav-dropdown-trigger" onclick="return false;"><span data-i18n="navGuidelines">Guidelines</span> ▾</a>
                     <div class="dropdown-menu">
-                        <a href="~/docs/guideline for cea through rpl.pdf" target="_blank" class="dropdown-item">Guideline for CEA through RPL</a>
-                        <a href="~/docs/guideline for rea.pdf" target="_blank" class="dropdown-item">Guideline for REA</a>
+                        <a href="~/docs/guideline for cea through rpl.pdf" target="_blank" class="dropdown-item" data-i18n="navCea">Guideline for CEA through RPL</a>
+                        <a href="~/docs/guideline for rea.pdf" target="_blank" class="dropdown-item" data-i18n="navRea">Guideline for REA</a>
                     </div>
                 </li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                <li><a href="#contact-section" class="nav-link" data-i18n="navContact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="notice-strip">
-        <div class="notice-badge">Latest Update</div>
+        <div class="notice-badge" data-i18n="noticeLabel">Latest Update</div>
         <div class="marquee-container">
-            <div class="marquee-text">The Environment Audit Designated Agency (EADA) under the Environment Audit Rules, 2025 is now live. | Apply for EC/FC/WL/CRZ via the official portal framework.</div>
+            <div class="marquee-text" data-i18n="noticeText">The Environment Audit Designated Agency (EADA) under the Environment Audit Rules, 2025 is now live. | Apply for EC/FC/WL/CRZ via the official portal framework.</div>
         </div>
     </div>
 
@@ -356,9 +376,9 @@
         <div class="hero-right">
             <div class="hero-content">
                 <div class="eada-logo-minimal"><img src="/images/branding/logo_eada.png" alt="EADA Logo" /></div>
-                <h2 class="hero-title">Empowering Sustainable Development</h2>
-                <p class="hero-desc">The official portal for environmental auditing, compliance certification, and regulatory oversight across India.</p>
-                <a href="#modules-section" class="btn-primary">Explore Services <span>&darr;</span></a>
+                <h2 class="hero-title" data-i18n="heroTitle">Empowering Sustainable Development</h2>
+                <p class="hero-desc" data-i18n="heroDesc">The official portal for environmental auditing, compliance certification, and regulatory oversight across India.</p>
+                <a href="#modules-section" class="btn-primary" data-i18n="heroBtn">Explore Services <span>&darr;</span></a>
             </div>
         </div>
     </section>
@@ -366,8 +386,8 @@
     <section id="modules-section" class="modules-section">
         <div class="container">
             <div class="mod-header">
-                <h2>Regulatory Modules</h2>
-                <p>Access the core platforms for environmental auditing, certification, and compliance management under the EADA framework.</p>
+                <h2 data-i18n="modHeading">Regulatory Modules</h2>
+                <p data-i18n="modSub">Access the core platforms for environmental auditing, certification, and compliance management under the EADA framework.</p>
             </div>
             <div class="mod-grid">
                 <article class="official-card">
@@ -377,13 +397,13 @@
                                 <circle cx="12" cy="12" r="10"></circle><path d="M12 11h.01"></path><path d="M11 7h2"></path><path d="M11 15h2"></path><path d="M11 19h2"></path>
                             </svg>
                         </div>
-                        <div class="mod-status-tag">Coming Soon</div>
+                        <div class="mod-status-tag" data-i18n="modSoon1">Coming Soon</div>
                     </div>
                     <div class="mod-content">
-                        <h3 class="mod-title">Recognition of Prior Learning (CEA RPL)</h3>
-                        <p class="mod-desc">A dedicated portal for existing environmental professionals to certify their expertise and align with the EADA framework.</p>
+                        <h3 class="mod-title" data-i18n="ceaTitle">Recognition of Prior Learning (CEA RPL)</h3>
+                        <p class="mod-desc" data-i18n="ceaDesc">A mode of certification based on prior experience and expertise, which shall remain in operation for a limited period as may be specified by the Central Government.</p>
                     </div>
-                    <button type="button" class="card-action disabled-action" onclick="alert('This module will be available soon.');">Coming Soon</button>
+                    <button type="button" class="card-action disabled-action" disabled data-i18n="modAccess1">Access Service <span>&rarr;</span></button>
                 </article>
                 <article class="official-card">
                     <div class="card-top-row">
@@ -392,13 +412,13 @@
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <div class="mod-status-tag">Coming Soon</div>
+                        <div class="mod-status-tag" data-i18n="modSoon2">Coming Soon</div>
                     </div>
                     <div class="mod-content">
-                        <h3 class="mod-title">Registered Environmental Auditor (REA)</h3>
-                        <p class="mod-desc">Official registry and auditing management system for environmental compliance monitoring across industrial sectors.</p>
+                        <h3 class="mod-title" data-i18n="reaTitle">Registered Environment Auditor (REA)</h3>
+                        <p class="mod-desc" data-i18n="reaDesc">A Certified Environment Auditor means individual, firm, or body corporate comprising two or more Certified Environment Auditors, who meet the criteria for registration as specified in the guidelines and are registered by the Environment Audit Designated Agency for undertaking environment audits and for performing such other functions as may be prescribed by the Central Government from time to time.</p>
                     </div>
-                    <button type="button" class="card-action disabled-action" onclick="alert('This module will be available soon.');">Coming Soon</button>
+                    <button type="button" class="card-action disabled-action" disabled data-i18n="modAccess2">Access Service <span>&rarr;</span></button>
                 </article>
             </div>
         </div>
@@ -411,11 +431,11 @@
                     <div class="about-image-wrap"><img src="/images/branding/about_building.jpg" alt="EADA Building" /></div>
                 </div>
                 <div class="about-right">
-                    <div class="about-label-row"><span class="about-label">Who We Are</span><div class="about-divider"></div></div>
-                    <h2 class="about-title">About Environment Audit Designated Agency</h2>
+                    <div class="about-label-row"><span class="about-label" data-i18n="aboutLabel">Who We Are</span><div class="about-divider"></div></div>
+                    <h2 class="about-title" data-i18n="aboutTitle">About Environment Audit Designated Agency</h2>
                     <div class="about-content-body">
-                        <p>The Environment Audit Designated Agency (EADA) is a role established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.</p>
-                        <p>The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder.</p>
+                        <p data-i18n="aboutP1">The Environment Audit Designated Agency (EADA) is a role established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.</p>
+                        <p data-i18n="aboutP2">The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder.</p>
                     </div>
                 </div>
             </div>
@@ -426,36 +446,49 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <h3 class="footer-title">Environment Audit Designated Agency</h3>
-                    <p class="footer-desc">Empowered oversight for a sustainable nation. EADA is an initiative of the Ministry of Environment, Forest and Climate Change (MoEF&CC), Government of India.</p>
+                    <div style="width: 75px; height: 75px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; overflow: hidden; padding: 8px;">
+                        <img src="/images/branding/logo_eada.png" alt="EADA Logo" style="width: 100%; height: auto; display: block;" />
+                    </div>
+                    <h3 class="footer-title" data-i18n="footerTitle">Environment Audit Designated Agency</h3>
+                    <p class="footer-desc" data-i18n="footerDesc">Empowered oversight for a sustainable nation. EADA is an initiative of the Ministry of Environment, Forest and Climate Change (MoEF&CC), Government of India.</p>
                 </div>
                 <div>
-                    <h4 class="footer-heading">Quick Links</h4>
+                    <h4 class="footer-heading" data-i18n="ftQuick">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About EADA</a></li>
-                        <li><a href="#">Audit Rules, 2025</a></li>
-                        <li><a href="#">Notices & Circulars</a></li>
+                        <li><a href="#" data-i18n="ftHome">Home</a></li>
+                        <li><a href="#about-section" data-i18n="ftAbout">About EADA</a></li>
+                        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" data-i18n="ftRules">Audit Rules, 2025</a></li>
+                        <li><a href="#" data-i18n="ftNotices">Notices & Circulars</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="footer-heading">Policies</h4>
+                    <h4 class="footer-heading" data-i18n="ftPolicy">Policies</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Copyright Policy</a></li>
-                        <li><a href="#">Hyperlinking Policy</a></li>
+                        <li><a href="#" data-i18n="ftPrivacy">Privacy Policy</a></li>
+                        <li><a href="#" data-i18n="ftTerms">Terms & Conditions</a></li>
+                        <li><a href="#" data-i18n="ftCopy">Copyright Policy</a></li>
+                        <li><a href="#" data-i18n="ftHyper">Hyperlinking Policy</a></li>
                     </ul>
                 </div>
-                <div style="text-align: right;">
-                    <h4 class="footer-heading">Contact Us</h4>
+                <div>
+                    <h4 class="footer-heading" data-i18n="ftContact">Contact Us</h4>
                     <div class="footer-contact">
-                        <p><strong>Email:</strong> helpdesk&#64;eada.gov.in</p>
-                        <p><strong>Phone:</strong> +91-11-2338-0000</p>
+                        <p><strong data-i18n="ftPhone">Phone:</strong> 01124607306</p>
+                        <p><strong data-i18n="ftEmail">Email:</strong> helpdesk&#64;eada.gov.in</p>
+                        
+                        <div style="margin-top: 1.25rem;">
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; margin: 0;">
+                                <strong style="color: #ffffff; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">Address:</strong>
+                                Environment Audit Designated Agency<br />
+                                VIKRAM SARABHAI BLOCK<br />
+                                National Productivity Council,<br />
+                                Utpadakta Bhavan, 5-6, Lodhi Rd, Gokalpuri, Institutional Area, Lodi Colony, New Delhi, Delhi 110003
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom" data-i18n="ftCopyright">
                 &copy; 2026 Environment Audit Designated Agency. All Rights Reserved. | Government of India
             </div>
         </div>
@@ -521,41 +554,123 @@
             }
         });
 
-        // Simple Translation Map
+        // Complete Translation Map
         const translations = {
             en: {
-                '.brand-titles p': 'Environment Audit Designated Agency',
-                '.hero-title': 'Empowering Sustainable Development',
-                '.hero-desc': 'The official portal for environmental auditing, compliance certification, and regulatory oversight across India.',
-                '.btn-primary': 'Explore Services <span>&darr;</span>',
-                '.mod-header h2': 'Regulatory Modules',
-                '.about-title': 'About Environment Audit Designated Agency',
-                '.marquee-text': 'The Environment Audit Designated Agency (EADA) under the Environment Audit Rules, 2025 is now live. | Apply for EC/FC/WL/CRZ via the official portal framework.'
+                brandEada: 'Environment Audit Designated Agency',
+                navHome: 'Home',
+                navAbout: 'About EADA',
+                navRules: 'Environment Audit Rules',
+                navGuidelines: 'Guidelines',
+                navCea: 'Guideline for CEA through RPL',
+                navRea: 'Guideline for REA',
+                navContact: 'Contact',
+                noticeLabel: 'Latest Update',
+                noticeText: 'The Environment Audit Designated Agency (EADA) under the Environment Audit Rules, 2025 is now live. | Apply for EC/FC/WL/CRZ via the official portal framework.',
+                heroTitle: 'Empowering Sustainable Development',
+                heroDesc: 'The official portal for environmental auditing, compliance certification, and regulatory oversight across India.',
+                heroBtn: 'Explore Services <span>&darr;</span>',
+                modHeading: 'Regulatory Modules',
+                modSub: 'Access the core platforms for environmental auditing, certification, and compliance management under the EADA framework.',
+                modSoon1: 'Coming Soon',
+                modSoon2: 'Coming Soon',
+                ceaTitle: 'Recognition of Prior Learning (CEA RPL)',
+                ceaDesc: 'A mode of certification based on prior experience and expertise, which shall remain in operation for a limited period as may be specified by the Central Government.',
+                modAccess1: 'Access Service <span>&rarr;</span>',
+                reaTitle: 'Registered Environmental Auditor (REA)',
+                reaDesc: 'A Certified Environment Auditor means an individual, firm, or body corporate comprising two or more Certified Environment Auditors, who meet the criteria for registration as specified in the guidelines and are registered by the Environment Audit Designated Agency for undertaking environment audits and for performing such other functions as may be prescribed by the Central Government from time to time.',
+                modAccess2: 'Access Service <span>&rarr;</span>',
+                aboutLabel: 'Who We Are',
+                aboutTitle: 'About Environment Audit Designated Agency',
+                aboutP1: 'The Environment Audit Designated Agency (EADA) is a role established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.',
+                aboutP2: 'The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder.',
+                footerTitle: 'Environment Audit Designated Agency',
+                footerDesc: 'Empowered oversight for a sustainable nation. EADA is an initiative of the Ministry of Environment, Forest and Climate Change (MoEF&CC), Government of India.',
+                ftQuick: 'Quick Links',
+                ftHome: 'Home',
+                ftAbout: 'About EADA',
+                ftRules: 'Audit Rules, 2025',
+                ftNotices: 'Notices & Circulars',
+                ftPolicy: 'Policies',
+                ftPrivacy: 'Privacy Policy',
+                ftTerms: 'Terms & Conditions',
+                ftCopy: 'Copyright Policy',
+                ftHyper: 'Hyperlinking Policy',
+                ftContact: 'Contact Us',
+                ftEmail: 'Email:',
+                ftPhone: 'Phone:',
+                ftCopyright: '&copy; 2026 Environment Audit Designated Agency. All Rights Reserved. | Government of India'
             },
             hi: {
-                '.brand-titles p': 'पर्यावरण लेखापरीक्षा नामित एजेंसी',
-                '.hero-title': 'सतत विकास को सशक्त बनाना',
-                '.hero-desc': 'भारत भर में पर्यावरण लेखापरीक्षा, अनुपालन प्रमाणन और नियामक निगरानी के लिए आधिकारिक पोर्टल।',
-                '.btn-primary': 'सेवाएं खोजें <span>&darr;</span>',
-                '.mod-header h2': 'नियामक मॉड्यूल',
-                '.about-title': 'पर्यावरण लेखापरीक्षा नामित एजेंसी के बारे में',
-                '.marquee-text': 'पर्यावरण लेखापरीक्षा नियम, 2025 के तहत पर्यावरण लेखापरीक्षा नामित एजेंसी (EADA) अब लाइव है। | आधिकारिक फ्रेमवर्क के माध्यम से आवेदन करें।'
+                brandEada: 'पर्यावरण लेखापरीक्षा नामित एजेंसी',
+                navHome: 'होम',
+                navAbout: 'ई.ए.डी.ए. के बारे में',
+                navRules: 'पर्यावरण लेखापरीक्षा नियम',
+                navGuidelines: 'दिशानिर्देश',
+                navCea: 'आरपीएल के माध्यम से सीईए के लिए दिशानिर्देश',
+                navRea: 'आरईए के लिए दिशानिर्देश',
+                navContact: 'संपर्क करें',
+                noticeLabel: 'नवीनतम अपडेट',
+                noticeText: 'पर्यावरण लेखापरीक्षा नियम, 2025 के तहत पर्यावरण लेखापरीक्षा नामित एजेंसी (EADA) अब लाइव है। | आधिकारिक पोर्टल फ्रेमवर्क के माध्यम से ईसी/एफसी/डब्ल्यूएल/सीआरजेड के लिए आवेदन करें।',
+                heroTitle: 'सतत विकास को सशक्त बनाना',
+                heroDesc: 'भारत भर में पर्यावरण लेखापरीक्षा, अनुपालन प्रमाणन और नियामक निगरानी के लिए आधिकारिक पोर्टल।',
+                heroBtn: 'सेवाएं खोजें <span>&darr;</span>',
+                modHeading: 'नियामक मॉड्यूल',
+                modSub: 'ई.ए.डी.ए. फ्रेमवर्क के तहत पर्यावरण लेखापरीक्षा, प्रमाणन और अनुपालन प्रबंधन के लिए कोर प्लेटफॉर्म तक पहुंचें।',
+                modSoon1: 'जल्द आ रहा है',
+                modSoon2: 'जल्द आ रहा है',
+                ceaTitle: 'पूर्व शिक्षा की मान्यता (सीईए आरपीएल)',
+                ceaDesc: 'पूर्व अनुभव और विशेषज्ञता के आधार पर प्रमाणन का एक तरीका, जो केंद्र सरकार द्वारा निर्दिष्ट सीमित अवधि के लिए लागू रहेगा।',
+                modAccess1: 'सेवा तक पहुंचें <span>&rarr;</span>',
+                reaTitle: 'पंजीकृत पर्यावरण लेखापरीक्षक (आरईए)',
+                reaDesc: 'प्रमाणित पर्यावरण लेखापरीक्षक का अर्थ है कोई व्यक्ति, फर्म या निगमित निकाय जिसमें दो या दो से अधिक प्रमाणित पर्यावरण लेखापरीक्षक शामिल हों, जो दिशानिर्देशों में निर्दिष्ट पंजीकरण के मानदंडों को पूरा करते हैं और जिन्हें पर्यावरण लेखापरीक्षा नामित एजेंसी द्वारा पर्यावरण लेखापरीक्षा करने और केंद्र सरकार द्वारा समय-समय पर निर्धारित किए जा सकने वाले अन्य कार्यों को करने के लिए पंजीकृत किया गया है।',
+                modAccess2: 'सेवा तक पहुंचें <span>&rarr;</span>',
+                aboutLabel: 'हम कौन हैं',
+                aboutTitle: 'पर्यावरण लेखापरीक्षा नामित एजेंसी के बारे में',
+                aboutP1: 'पर्यावरण लेखापरीक्षा नामित एजेंसी (EADA) एक भूमिका है जिसे पर्यावरण लेखापरीक्षा नियम, 2025 के तहत स्थापित किया गया है, जिसे 29 अगस्त 2025 को पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय (MoEF&CC) द्वारा अधिसूचित किया गया था। EADA भारत में पर्यावरण लेखापरीक्षा ढांचे के समग्र प्रबंधन के लिए जिम्मेदार है।',
+                aboutP2: 'यह ढांचा प्रमुख पर्यावरणीय कानूनों के अनुपालन को मजबूत करने के लिए तैयार किया गया है, जिसमें पर्यावरण (संरक्षण) अधिनियम, 1986; जल (प्रदूषण निवारण और नियंत्रण) अधिनियम, 1974; वायु (प्रदूषण निवारण और नियंत्रण) अधिनियम, 1981; वन (संरक्षण एवं संवर्धन) अधिनियम, 1980; वन्य जीव (संरक्षण) अधिनियम, 1972 और उसके तहत बनाए गए नियम शामिल हैं।',
+                footerTitle: 'पर्यावरण लेखापरीक्षा नामित एजेंसी',
+                footerDesc: 'एक सतत राष्ट्र के लिए सशक्त निगरानी। ई.ए.डी.ए. पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय (MoEF&CC), भारत सरकार की एक पहल है।',
+                ftQuick: 'त्वरित लिंक',
+                ftHome: 'होम',
+                ftAbout: 'ई.ए.डी.ए. के बारे में',
+                ftRules: 'ऑडिट नियम, 2025',
+                ftNotices: 'नोटिस और परिपत्र',
+                ftPolicy: 'नीतियां',
+                ftPrivacy: 'गोपनीयता नीति',
+                ftTerms: 'नियम और शर्तें',
+                ftCopy: 'कॉपीराइट नीति',
+                ftHyper: 'हाइपरलिंकिंग नीति',
+                ftContact: 'संपर्क करें',
+                ftEmail: 'ईमेल:',
+                ftPhone: 'फोन:',
+                ftCopyright: '&copy; 2026 पर्यावरण लेखापरीक्षा नामित एजेंसी। सर्वाधिकार सुरक्षित। | भारत सरकार'
             }
         };
 
         function setLanguage(lang) {
-            for (let selector in translations[lang]) {
-                const el = document.querySelector(selector);
-                if (el) el.innerHTML = translations[lang][selector];
-            }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
             if(langBtn) langBtn.innerHTML = lang.toUpperCase() + ' ▾';
             document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('eada_lang', lang);
             
             if(langMenu) {
                 langMenu.classList.remove('active');
-                langBtn.setAttribute('aria-expanded', 'false');
+                if(langBtn) langBtn.setAttribute('aria-expanded', 'false');
             }
         }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('eada_lang') || 'en';
+            setLanguage(savedLang);
+        });
 
         document.getElementById('lang-en')?.addEventListener('click', (e) => { e.preventDefault(); setLanguage('en'); });
         document.getElementById('lang-hi')?.addEventListener('click', (e) => { e.preventDefault(); setLanguage('hi'); });
