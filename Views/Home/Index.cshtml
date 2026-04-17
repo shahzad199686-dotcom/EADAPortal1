@@ -66,7 +66,9 @@
         .brand-right { display: flex; align-items: center; gap: 1.5rem; }
         .badge-logo, .mini-logo { position: relative; display: flex; align-items: center; justify-content: center; }
         .mini-logo { width: 56px; height: 56px; }
+        .mini-logo.logo-lg { width: 72px; height: 72px; }
         .badge-logo { height: 44px; min-width: 65px; }
+        .badge-logo.logo-lg { height: 62px; min-width: 75px; }
 
         .badge-logo:not(:last-child)::after {
             content: ''; position: absolute; right: -0.75rem; top: 15%; height: 70%; width: 1px; background-color: var(--border-light);
@@ -102,11 +104,17 @@
         .nav-link:hover { background: var(--forest-green-dark); }
 
         .nav-item-dropdown { position: relative; }
+        
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: 0; background: #ffffff; min-width: 250px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); border: 1px solid var(--border-light); padding: 0; z-index: 100;
         }
-        .nav-item-dropdown:hover .dropdown-menu { display: block; }
+        
+        /* Desktop Hover only */
+        @@media (min-width: 769px) {
+            .nav-item-dropdown:hover .dropdown-menu { display: block; }
+        }
+        
         .dropdown-item { display: block; padding: 0.75rem 1.25rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid var(--border-light); }
         .dropdown-item:last-child { border-bottom: none; }
         .dropdown-item:hover { background: var(--bg-light); color: var(--forest-green); }
@@ -238,11 +246,13 @@
             .branding-inner { flex-direction: column; gap: 0.5rem; }
             .brand-logos-left { flex-direction: row; width: 100%; justify-content: center; align-items: center; gap: 0.75rem; }
             .logo-group .mini-logo { width: 42px; height: 42px; }
+            .logo-group .mini-logo.logo-lg { width: 54px; height: 54px; }
             .brand-titles { margin-left: 0; text-align: left; }
             .brand-titles h1 { font-size: 1.4rem; }
             .brand-titles p { font-size: 0.7rem; margin-top: 0; }
             .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
             .badge-logo { height: 32px; min-width: 45px; }
+            .badge-logo.logo-lg { height: 46px; min-width: 55px; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -278,38 +288,42 @@
             
             .nav-item-dropdown { flex-direction: column; align-items: flex-start; width: 100%; position: relative; }
             
-            /* SUPER-SPECIFIC FORCE FIX: Kill white blocks in mobile drawer */
-            #nav-menu .dropdown-menu {
-                position: static !important;
-                display: none !important;
-                width: 100% !important;
-                background-color: #1e293b !important;
-                background: #1e293b !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0.5rem 0 !important;
-                border: none !important;
-                border-top: 1px solid rgba(255,255,255,0.05) !important;
-                border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-            }
-            .nav-item-dropdown.active > .dropdown-menu {
-                display: block !important;
+            /* Mobile Dropdown Styling */
+            .nav-item-dropdown .dropdown-menu {
+                position: static;
+                display: none;
+                width: 100%;
+                background: #1e293b;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                border: none;
+                border-top: 1px solid rgba(255,255,255,0.05);
             }
             
-            #nav-menu .dropdown-item {
+            .nav-item-dropdown.active > .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-arrow { display: inline-block; transition: transform 0.3s; margin-left: 5px; }
+            .nav-item-dropdown.active .dropdown-arrow { transform: rotate(180deg); }
+            
+            .dropdown-item {
                 color: #cbd5e1 !important;
-                padding: 1rem 1.5rem 1rem 2.5rem !important;
+                padding: 1rem 1.5rem 1rem 2.5rem !important; /* Indented */
                 font-size: 0.9rem !important;
                 background-color: transparent !important;
-                background: transparent !important;
+                border: none !important;
                 border-bottom: 1px solid rgba(255,255,255,0.05) !important;
                 display: block !important;
                 width: 100% !important;
             }
-            #nav-menu .dropdown-item:last-child {
+            
+            .dropdown-item:last-child {
                 border-bottom: none !important;
             }
-            #nav-menu .dropdown-item:hover {
+            
+            .dropdown-item:hover {
                 background: rgba(255,255,255,0.05) !important;
                 color: #ffffff !important;
             }
@@ -389,7 +403,7 @@
             <div class="brand-logos-left">
                 <div class="logo-group">
                     <div class="mini-logo"><img src="/images/branding/logo_emblem.png" alt="Emblem" /></div>
-                    <div class="mini-logo"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" /></div>
+                    <div class="mini-logo logo-lg"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" /></div>
                 </div>
                 <div class="brand-titles">
                     <h1>EADA</h1>
@@ -397,9 +411,9 @@
                 </div>
             </div>
             <div class="brand-right">
-                <div class="badge-logo"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
+                <div class="badge-logo logo-lg"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
                 <div class="badge-logo"><img src="/images/branding/logo_life.png" alt="LiFE" /></div>
-                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
+                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo logo-lg"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
             </div>
         </div>
     </div>
@@ -418,7 +432,10 @@
                 <li><a href="#about-section" class="nav-link" data-i18n="navAbout">About EADA</a></li>
                 <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link" data-i18n="navRules">Environment Audit Rules</a></li>
                 <li class="nav-item-dropdown">
-                    <a href="#" class="nav-link nav-dropdown-trigger" onclick="return false;"><span data-i18n="navGuidelines">Guidelines</span> ▾</a>
+                    <a href="#" class="nav-link nav-dropdown-trigger" onclick="return false;">
+                        <span data-i18n="navGuidelines">Guidelines</span> 
+                        <span class="dropdown-arrow">▾</span>
+                    </a>
                     <div class="dropdown-menu">
                         <a href="~/docs/guideline for cea through rpl.pdf" target="_blank" class="dropdown-item" data-i18n="navCea">Guideline for CEA through RPL</a>
                         <a href="~/docs/guideline for rea.pdf" target="_blank" class="dropdown-item" data-i18n="navRea">Guideline for REA</a>
@@ -591,11 +608,14 @@
             });
         });
 
-        // Close menu on normal link click
-        document.querySelectorAll('.nav-link:not(.nav-dropdown-trigger), .dropdown-item').forEach(link => {
-            link.addEventListener('click', () => {
+        // Close menu on normal link click (exclude dropdown triggers)
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.addEventListener('click', (e) => {
                 if(window.innerWidth <= 768) {
-                    closeMobileMenu();
+                    // Only close if it's NOT a dropdown trigger
+                    if (!link.classList.contains('nav-dropdown-trigger')) {
+                        closeMobileMenu();
+                    }
                 }
             });
         });
