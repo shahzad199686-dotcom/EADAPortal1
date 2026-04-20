@@ -274,24 +274,24 @@
             .gov-strip-inner .brand-right { justify-content: flex-end; }
             .util-dropdown-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
             
-            .branding-strip { padding: 0.5rem 0; }
-            .branding-inner { flex-direction: column; gap: 0.75rem; }
-            .brand-logos-left { flex-direction: column; width: 100%; justify-content: flex-start; align-items: flex-start; gap: 1rem; }
-            .brand-global, .brand-agency { width: 100%; justify-content: flex-start; align-items: center; }
+            .branding-strip { padding: 0.4rem 0; }
+            .branding-inner { flex-direction: column; gap: 0.5rem; }
+            .brand-logos-left { flex-direction: column; width: 100%; justify-content: center; align-items: center; gap: 0.75rem; }
+            .brand-global, .brand-agency { width: 100%; justify-content: center; align-items: center; }
             .brand-divider { display: none; }
-            .ministry-text { text-align: left; white-space: normal; margin-left: 0.5rem; }
-            .ministry-title { font-size: 1.15rem; }
-            .ministry-subtitle { font-size: 0.9rem; }
+            .ministry-text { text-align: left; white-space: normal; margin-left: 0.4rem; }
+            .ministry-title { font-size: 1.1rem; line-height: 1.2; }
+            .ministry-subtitle { font-size: 0.85rem; }
             
-            .mini-logo { height: 50px; }
-            .logo-emblem { height: 48px; }
-            .brand-titles { margin-left: 0.5rem; text-align: left; }
-            .brand-titles h1 { font-size: 1.8rem; }
-            .brand-titles p { font-size: 0.9rem; margin-top: 0; }
-            .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.75rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
-            .badge-logo { height: 48px; min-width: 45px; }
-            .logo-life { height: 38px !important; }
-            .logo-azadi { height: 40px !important; }
+            .mini-logo { height: 45px; }
+            .logo-emblem { height: 44px; }
+            .brand-titles { margin-left: 0.4rem; text-align: left; flex: none; }
+            .brand-titles h1 { font-size: 1.6rem; }
+            .brand-titles p { font-size: 0.8rem; margin-top: 0; }
+            .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; flex-wrap: nowrap; gap: 0.75rem; margin-top: 0.25rem; }
+            .badge-logo { height: 42px; min-width: 40px; }
+            .logo-life { height: 32px !important; }
+            .logo-azadi { height: 34px !important; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -400,22 +400,47 @@
             .gov-strip-inner .brand-right > span { font-size: 0.55rem; padding-right: 5px; }
             .util-dropdown-btn { padding: 0.2rem 0.5rem; font-size: 0.65rem; }
             
-            .brand-logos-left { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.75rem; width: 100%; }
-            .brand-global, .brand-agency { width: 100%; justify-content: flex-start; align-items: center; gap: 0.5rem; }
-            .ministry-text { text-align: left; margin-left: 0.25rem; }
+            .brand-logos-left { flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; }
+            .brand-global, .brand-agency { width: 100%; justify-content: center; align-items: center; gap: 0.5rem; }
+            .ministry-text { text-align: left; margin-left: 0.35rem; }
             .ministry-title { font-size: 0.95rem; line-height: 1.2; }
-            .ministry-subtitle { font-size: 0.7rem; }
+            .ministry-subtitle { font-size: 0.75rem; }
             .brand-titles h1 { font-size: 1.4rem; }
             .brand-titles p { font-size: 0.75rem; line-height: 1.2; white-space: normal; }
-            .branding-inner .brand-right { gap: 0.5rem; padding-top: 0.5rem; justify-content: center; }
-            .badge-logo { height: 26px; min-width: 38px; }
-            .logo-life, .logo-azadi { height: 20px !important; }
+            .branding-inner .brand-right { gap: 0.6rem; padding-top: 0.5rem; justify-content: center; }
+            .badge-logo { height: 38px; min-width: 36px; }
+            .logo-life, .logo-azadi { height: 26px !important; }
             .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
             .about-title { font-size: 1.8rem; }
             
             .banner-slider-container { height: 45vh; min-height: 320px; max-height: none; }
             .banner-slide img { object-position: center; }
             .slider-arrow { display: none; }
+        }
+
+        @@media (max-width: 430px) {
+            .branding-strip { padding: 0.35rem 0; }
+            .branding-inner { gap: 0.4rem; }
+            .brand-logos-left { gap: 0.5rem; }
+            .ministry-title { font-size: 0.9rem; }
+            .ministry-subtitle { font-size: 0.7rem; }
+            .brand-titles h1 { font-size: 1.35rem; }
+            .brand-titles p { font-size: 0.7rem; }
+            .mini-logo { height: 38px; }
+            .logo-emblem { height: 36px; }
+            .branding-inner .brand-right { gap: 0.5rem; padding-top: 0.4rem; }
+            .badge-logo { height: 34px; min-width: 32px; }
+            .logo-life, .logo-azadi { height: 24px !important; }
+        }
+
+        @@media (max-width: 375px) {
+            .container { padding: 0 10px; }
+            .ministry-title { font-size: 0.85rem; }
+            .brand-titles h1 { font-size: 1.25rem; }
+            .mini-logo { height: 34px; }
+            .logo-emblem { height: 32px; }
+            .badge-logo { height: 32px; min-width: 30px; }
+            .logo-life, .logo-azadi { height: 22px !important; }
         }
     </style>
 </head>
@@ -445,10 +470,6 @@
             <div class="brand-logos-left">
                 <div class="brand-global">
                     <div class="mini-logo logo-emblem"><img src="/images/branding/logo_emblem.png" alt="Emblem" /></div>
-                    <div class="ministry-text text-nowrap">
-                        <div class="ministry-title" data-i18n="ministryTitle">Ministry of Environment, Forest and Climate Change</div>
-                        <div class="ministry-subtitle" data-i18n="ministrySubtitle">Government of India</div>
-                    </div>
                 </div>
                 
                 <div class="brand-divider"></div>
@@ -465,7 +486,6 @@
             <div class="brand-right">
                 <div class="badge-logo logo-life"><img src="/images/branding/logo_life.png" alt="LiFE" /></div>
                 <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
-                <a href="https://amritmahotsav.nic.in/" target="_blank" class="badge-logo logo-azadi"><img src="/images/branding/logo_azadi.png" alt="Azadi Ka Amrit Mahotsav" /></a>
             </div>
         </div>
     </div>
