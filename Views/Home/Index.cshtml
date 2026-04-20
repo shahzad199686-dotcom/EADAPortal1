@@ -59,19 +59,22 @@
         .branding-inner { display: flex; justify-content: space-between; align-items: center; }
         .brand-logos-left { display: flex; align-items: center; gap: 1rem; }
         .logo-group { display: flex; align-items: center; gap: 0.85rem; }
-        .brand-titles { text-align: left; margin-left: 0.5rem; flex: 1; }
-        .brand-titles h1 { font-size: 1.7rem; font-weight: 900; color: var(--gov-blue); line-height: 1.1; margin: 0; }
-        .brand-titles p { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 4px; line-height: 1.3; }
+        .brand-titles { text-align: left; margin-left: 0.75rem; flex: 1; }
+        .brand-titles h1 { font-size: 2.4rem; font-weight: 900; color: var(--gov-blue); line-height: 1.0; margin: 0; letter-spacing: -0.03em; }
+        .brand-titles p { font-size: 1.05rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; line-height: 1.2; }
 
         .brand-right { display: flex; align-items: center; gap: 1.5rem; }
-        .badge-logo, .mini-logo { position: relative; display: flex; align-items: center; justify-content: center; }
-        .mini-logo { width: 56px; height: 56px; }
-        .mini-logo.logo-lg { width: 72px; height: 72px; }
-        .badge-logo { height: 44px; min-width: 65px; }
-        .badge-logo.logo-lg { height: 62px; min-width: 75px; }
+        .badge-logo, .mini-logo { position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        /* Unified sizing based on shape for visual balance (Desktop - 100px) */
+        .mini-logo { height: 100px; width: auto; }
+        .logo-emblem { height: 95px; }
+        
+        .badge-logo { height: 100px; width: auto; min-width: 80px; }
+        .logo-life { height: 75px !important; } /* Balanced against 100px circles */
 
         .badge-logo:not(:last-child)::after {
-            content: ''; position: absolute; right: -0.75rem; top: 15%; height: 70%; width: 1px; background-color: var(--border-light);
+            content: ''; position: absolute; right: -0.75rem; top: 25%; height: 50%; width: 1px; background-color: var(--border-light);
         }
         
         .badge-logo img, .mini-logo img { max-height: 100%; max-width: 100%; object-fit: contain; }
@@ -139,7 +142,8 @@
         .hero-banner-section { width: 100%; background: #0f172a; border-bottom: 3px solid var(--border-light); display: flex; }
         .banner-slider-container { position: relative; width: 100%; height: 75vh; min-height: 600px; max-height: none; overflow: hidden; background: #0f172a; }
         
-        .banner-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .banner-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .banner-slide { flex: 0 0 100%; height: 100%; position: relative; }
         .banner-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; margin: 0; padding: 0; border: none; }
         
         /* Banner Controls */
@@ -157,9 +161,19 @@
         /* --- 6. Official Cards Section --- */
         .modules-section { padding: 4rem 0; background: #ffffff; border-bottom: 1px solid var(--border-light); }
         .mod-header { text-align: center; margin-bottom: 4rem; }
-        .mod-header h2 { font-size: 2.25rem; color: var(--gov-blue); margin-bottom: 0; font-weight: 800; }
-        
         .mod-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; justify-content: center; }
+        
+        /* Force 3rd card to 2nd row, centered, with same width as top cards */
+        .official-card:last-child { 
+            grid-column: span 2; 
+            width: calc(50% - 1.25rem); /* Matches 1fr width minus half of the gap */
+            justify-self: center; 
+        }
+        
+        @@media (max-width: 768px) {
+            .mod-grid { grid-template-columns: 1fr; }
+            .official-card:last-child { grid-column: auto; width: 100%; margin: 0; }
+        }
         
         .official-card { 
             background: #eefdf4; border: 1px solid #eefdf4; 
@@ -197,7 +211,7 @@
         .card-action span { font-size: 1.1rem; line-height: 1; }
 
         /* --- 7. About Section (Structured) --- */
-        .about-section { padding: 5rem 5% 6rem; background: #ffffff; width: 100%; border-top: 1px solid var(--border-light); }
+        .about-section { padding: 5rem 5% 6rem; background: #ffffff; width: 100%; border-bottom: 1px solid var(--border-light); }
         .about-wrapper { max-width: 1150px; margin: 0 auto; width: 100%; }
         
         .about-label-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
@@ -208,6 +222,15 @@
         .about-subtitle { font-size: 1.5rem; font-weight: 700; color: var(--gov-blue); margin: 2rem 0 1rem; line-height: 1.3; }
         .about-content-body p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.25rem; text-align: justify; }
         .about-content-body p:last-child { margin-bottom: 0; }
+        
+        /* Official Roles List Scaling */
+        .roles-list { padding-left: 2rem; margin-bottom: 1.5rem; }
+        .roles-list li { 
+            font-size: 1rem; line-height: 1.7; color: var(--text-muted); 
+            margin-bottom: 1.25rem; text-align: justify; 
+            padding-left: 0.5rem;
+        }
+        .roles-list li::marker { font-weight: 700; color: var(--gov-blue); }
 
         /* --- Footer --- */
         footer { background: var(--gov-blue); color: #e2e8f0; padding: 4rem 5% 2rem; border-top: none; width: 100%; }
@@ -243,16 +266,16 @@
             .util-dropdown-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
             
             .branding-strip { padding: 0.5rem 0; }
-            .branding-inner { flex-direction: column; gap: 0.5rem; }
-            .brand-logos-left { flex-direction: row; width: 100%; justify-content: center; align-items: center; gap: 0.75rem; }
-            .logo-group .mini-logo { width: 42px; height: 42px; }
-            .logo-group .mini-logo.logo-lg { width: 54px; height: 54px; }
-            .brand-titles { margin-left: 0; text-align: left; }
-            .brand-titles h1 { font-size: 1.4rem; }
-            .brand-titles p { font-size: 0.7rem; margin-top: 0; }
-            .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
-            .badge-logo { height: 32px; min-width: 45px; }
-            .badge-logo.logo-lg { height: 46px; min-width: 55px; }
+            .branding-inner { flex-direction: column; gap: 0.75rem; }
+            .brand-logos-left { flex-direction: row; width: 100%; justify-content: center; align-items: center; gap: 1rem; }
+            .mini-logo { height: 50px; }
+            .logo-emblem { height: 48px; }
+            .brand-titles { margin-left: 0.5rem; text-align: left; }
+            .brand-titles h1 { font-size: 1.8rem; }
+            .brand-titles p { font-size: 0.9rem; margin-top: 0; }
+            .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.75rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
+            .badge-logo { height: 48px; min-width: 45px; }
+            .logo-life { height: 38px !important; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -364,8 +387,8 @@
             .logo-group { gap: 0.4rem; flex-shrink: 0; }
             .logo-group .mini-logo { width: 34px; height: 34px; }
             .brand-titles { text-align: left; min-width: 0; }
-            .brand-titles h1 { font-size: 1.15rem; }
-            .brand-titles p { font-size: 0.6rem; line-height: 1.2; white-space: normal; }
+            .brand-titles h1 { font-size: 1.4rem; }
+            .brand-titles p { font-size: 0.75rem; line-height: 1.2; white-space: normal; }
             .branding-inner .brand-right { gap: 0.5rem; padding-top: 0.5rem; justify-content: center; }
             .badge-logo { height: 26px; min-width: 38px; }
             .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
@@ -402,8 +425,8 @@
         <div class="container branding-inner">
             <div class="brand-logos-left">
                 <div class="logo-group">
-                    <div class="mini-logo"><img src="/images/branding/logo_emblem.png" alt="Emblem" /></div>
-                    <div class="mini-logo logo-lg"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" /></div>
+                    <div class="mini-logo logo-emblem"><img src="/images/branding/logo_emblem.png" alt="Emblem" /></div>
+                    <div class="mini-logo"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
                 </div>
                 <div class="brand-titles">
                     <h1>EADA</h1>
@@ -411,9 +434,9 @@
                 </div>
             </div>
             <div class="brand-right">
-                <div class="badge-logo logo-lg"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
-                <div class="badge-logo"><img src="/images/branding/logo_life.png" alt="LiFE" /></div>
-                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo logo-lg"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
+                <div class="badge-logo"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" /></div>
+                <div class="badge-logo logo-life"><img src="/images/branding/logo_life.png" alt="LiFE" /></div>
+                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
             </div>
         </div>
     </div>
@@ -455,26 +478,59 @@
 
     <section class="hero-banner-section">
         <div class="banner-slider-container">
-            <!-- Left Navigation Arrow -->
-            <button class="slider-arrow prev-arrow" aria-label="Previous Slide">
+            <button class="slider-arrow prev-arrow" id="slide-prev" aria-label="Previous Slide">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
             </button>
             
-            <!-- Banner Image -->
-            <div class="banner-slide">
-                <img src="/images/branding/hero_banner.jpg" alt="Ministry of Environment, Forest and Climate Change - Official Delegation" />
+            <div class="banner-track" id="banner-track">
+                <div class="banner-slide">
+                    <img src="/images/branding/hero_banner_1.png" alt="EADA Official Delegation" />
+                </div>
+                <div class="banner-slide">
+                    <img src="/images/branding/hero_banner_2.png" alt="Environment and Sustainable Energy" />
+                </div>
+                <div class="banner-slide">
+                    <img src="/images/branding/hero_banner_3.png" alt="Environmental Research Laboratory" />
+                </div>
+                <div class="banner-slide">
+                    <img src="/images/branding/hero_banner.jpg" alt="MoEFCC Official Portal" />
+                </div>
             </div>
 
-            <!-- Right Navigation Arrow -->
-            <button class="slider-arrow next-arrow" aria-label="Next Slide">
+            <button class="slider-arrow next-arrow" id="slide-next" aria-label="Next Slide">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
-
-            <!-- Bottom Control Frame (Pause / Play indicator) -->
+            
             <div class="slider-controls">
-                <button class="slider-pause" aria-label="Pause Banner">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                <button class="slider-pause" id="slide-pause" aria-label="Toggle Autoplay">
+                    <svg id="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                    <svg id="play-icon" style="display:none;" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="about-section">
+        <div class="about-wrapper">
+            <h2 class="about-title" data-i18n="aboutTitle">About Environment Audit Designated Agency</h2>
+            <div class="about-content-body">
+                <p data-i18n="aboutP1">The Environment Audit Designated Agency (EADA) has been established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.</p>
+                <p data-i18n="aboutP2">The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder. It also supports compliance with regulatory approvals such as Environmental Clearance (EC), Consent to Establish (CTE), and Consent to Operate (CTO).</p>
+                <h3 class="about-subtitle" data-i18n="aboutRoles">Roles and Responsibilities of EADA</h3>
+                <p data-i18n="aboutRolesIntro" style="font-weight: 500; color: var(--text-dark); margin-bottom: 1.5rem;">The roles and responsibilities of the Environment Audit Designated Agency shall include, but not be limited to, the following:</p>
+                <ol type="i" class="roles-list">
+                    <li data-i18n="aboutRolesP1_1">Specifying minimum eligibility criteria for Certified Environment Auditors;</li>
+                    <li data-i18n="aboutRolesP1_2">Developing screening methodologies, which may include conducting examinations and/or other processes to identify qualified candidates for their certification as Certified Environment Auditor;</li>
+                    <li data-i18n="aboutRolesP1_3">Certifying environment auditors including renewal, suspension, withdrawal, or cancellation of such certifications;</li>
+                    <li data-i18n="aboutRolesP1_4">Specifying the criteria for registration of the Certified Environment Auditor;</li>
+                    <li data-i18n="aboutRolesP1_5">Registration of the Certified Environment Auditor including renewal, suspension, withdrawal, or cancellation of such registrations;</li>
+                    <li data-i18n="aboutRolesP1_6">Monitoring the performance of Registered Environment Auditor and issuing directions as necessary;</li>
+                    <li data-i18n="aboutRolesP1_7">Facilitating capacity building through training programs, workshops, seminars, conferences, online courses, and other relevant initiatives for Certified Environment Auditor and Registered Environment Auditor;</li>
+                    <li data-i18n="aboutRolesP1_8">Taking disciplinary action against Certified Environment Auditor and Registered Environment Auditor, wherever required;</li>
+                    <li data-i18n="aboutRolesP1_9">Specifying guidelines, procedures, and standards governing the functioning of Certified Environment Auditor and Registered Environment Auditor;</li>
+                    <li data-i18n="aboutRolesP1_10">Maintaining an online register of all Certified Environment Auditors and Registered Environment Auditors, which shall be publicly accessible;</li>
+                    <li data-i18n="aboutRolesP1_11">Publishing an annual report of its activities within six months from the end of each financial year, and submitting a copy of the report to the Central Government within thirty days of its publication.</li>
+                </ol>
             </div>
         </div>
     </section>
@@ -482,7 +538,7 @@
     <section id="modules-section" class="modules-section">
         <div class="container">
             <div class="mod-header">
-                <h2 data-i18n="modHeading">Mode of Entries</h2>
+                <h2 data-i18n="modHeading">Mode of Certification / Registration</h2>
             </div>
             <div class="mod-grid">
                 <article class="official-card">
@@ -511,23 +567,19 @@
                         <span class="card-action" data-i18n="modAccess2">Apply here &rarr;</span>
                     </div>
                 </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="about-section" class="about-section">
-        <div class="about-wrapper">
-            <h2 class="about-title" data-i18n="aboutTitle">About Environment Audit Designated Agency</h2>
-            <div class="about-content-body">
-                <p data-i18n="aboutP1">The Environment Audit Designated Agency (EADA) has been established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.</p>
-                <p data-i18n="aboutP2">The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder. It also supports compliance with regulatory approvals such as Environmental Clearance (EC), Consent to Establish (CTE), and Consent to Operate (CTO).</p>
-                <h3 class="about-subtitle" data-i18n="aboutRoles">Roles and Responsibilities of EADA</h3>
-                <p data-i18n="aboutRolesIntro" style="font-weight: 500; color: var(--text-dark); margin-bottom: 1.5rem;">The roles and responsibilities of the Environment Audit Designated Agency shall include, but not be limited to, the following:</p>
-                <div class="about-content-body">
-                    <p data-i18n="aboutRolesP1">The EADA is responsible for specifying minimum eligibility criteria for Certified Environment Auditors and developing screening methodologies, which may include conducting examinations and/or other processes to identify qualified candidates for their certification as Certified Environment Auditor. It is further responsible for certifying environment auditors, including renewal, suspension, withdrawal, or cancellation of such certifications, as well as specifying the criteria for registration of Certified Environment Auditors and managing their registration, including renewal, suspension, withdrawal, or cancellation.</p>
-                    <p data-i18n="aboutRolesP2">EADA is also entrusted with monitoring the performance of Registered Environment Auditors and issuing directions as necessary. It facilitates capacity building through training programs, workshops, seminars, conferences, online courses, and other relevant initiatives for both Certified Environment Auditors and Registered Environment Auditors. Where required, EADA shall take disciplinary action and specify guidelines, procedures, and standards governing their functioning.</p>
-                    <p data-i18n="aboutRolesP3">Additionally, EADA shall maintain an online register of all Certified Environment Auditors and Registered Environment Auditors, which shall be publicly accessible. It shall also publish an annual report of its activities within six months from the end of each financial year and submit a copy to the Central Government within thirty days of its publication.</p>
-                </div>
+                <article class="official-card">
+                    <div class="mod-status-tag" data-i18n="modSoon3">Coming Soon</div>
+                    <div class="mod-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                    </div>
+                    <div class="mod-content">
+                        <h3 class="mod-title" data-i18n="nceTitle">National Certification Examination</h3>
+                        <span class="card-action" data-i18n="modAccess3">Apply here &rarr;</span>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -547,7 +599,7 @@
                     <ul class="footer-links">
                         <li><a href="#" data-i18n="ftHome">Home</a></li>
                         <li><a href="#about-section" data-i18n="ftAbout">About EADA</a></li>
-                        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" data-i18n="ftRules">Audit Rules, 2025</a></li>
+                        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" data-i18n="ftRules">Enviroment Audit Rules</a></li>
                         <li><a href="#" data-i18n="ftNotices">Notices & Circulars</a></li>
                     </ul>
                 </div>
@@ -633,6 +685,63 @@
             });
         }
 
+        // Hero Slider Logic
+        const track = document.getElementById('banner-track');
+        const slides = document.querySelectorAll('.banner-slide');
+        const nextBtn = document.getElementById('slide-next');
+        const prevBtn = document.getElementById('slide-prev');
+        const pauseBtn = document.getElementById('slide-pause');
+        const pauseIcon = document.getElementById('pause-icon');
+        const playIcon = document.getElementById('play-icon');
+
+        let currentIndex = 0;
+        let isPaused = false;
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function resetInterval() {
+            if (!isPaused) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            if (isPaused) {
+                clearInterval(slideInterval);
+                pauseIcon.style.display = 'none';
+                playIcon.style.display = 'block';
+            } else {
+                slideInterval = setInterval(nextSlide, 5000);
+                pauseIcon.style.display = 'block';
+                playIcon.style.display = 'none';
+            }
+        });
+
         // Close on outside click for BOTH menus
         document.addEventListener('click', function(e) {
             // Mobile Nav
@@ -664,7 +773,7 @@
                 heroTitle: 'Empowering Sustainable Development',
                 heroDesc: 'The official portal for environmental auditing, compliance certification, and regulatory oversight across India.',
                 heroBtn: 'Explore Services <span>&darr;</span>',
-                modHeading: 'Mode of Entries',
+                modHeading: 'Mode of Certification / Registration',
                 modSoon1: 'Coming Soon',
                 modSoon2: 'Coming Soon',
                 ceaTitle: 'Certified Environment Auditor through Recognition of Prior Learning (RPL)',
@@ -686,7 +795,7 @@
                 ftQuick: 'Quick Links',
                 ftHome: 'Home',
                 ftAbout: 'About EADA',
-                ftRules: 'Audit Rules, 2025',
+                ftRules: 'Enviroment Audit Rules',
                 ftNotices: 'Notices & Circulars',
                 ftPolicy: 'Policies',
                 ftPrivacy: 'Privacy Policy',
