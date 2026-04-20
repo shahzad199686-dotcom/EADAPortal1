@@ -23,7 +23,7 @@
             --text-muted: #475569;
             --border-light: #e2e8f0;
             --bg-light: #f8fafc;
-            --container-w: 1280px;
+            --container-w: 1400px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +31,7 @@
         
         h1, h2, h3, h4, h5, h6 { font-weight: 700; color: #111827; letter-spacing: -0.02em; }
         
-        .container { max-width: var(--container-w); margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+        .container { max-width: var(--container-w); margin: 0 auto; padding: 0 0px; width: 100%; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
         
         html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
@@ -47,34 +47,42 @@
             color: var(--text-dark);
         }
         .gov-strip-inner { display: flex; justify-content: space-between; align-items: center; }
-        .gov-left { display: flex; align-items: center; gap: 0.75rem; }
-        .flag-box { width: 18px; height: 12px; border: 1px solid #ddd; background: linear-gradient(#FF9933 33.3%, #ffffff 33.3% 66.6%, #128807 66.6%); }
+        .gov-left { display: flex; align-items: center; gap: 6px; }
+        .india-flag { width: 22px; height: 14px; object-fit: cover; margin-right: 8px; border-radius: 2px; }
 
         /* --- 2. Branding Strip --- */
         .branding-strip {
-            padding: 1.25rem 0;
+            padding: 0.75rem 0;
             background: #ffffff;
             border-bottom: 1px solid var(--border-light);
         }
-        .branding-inner { display: flex; justify-content: space-between; align-items: center; }
-        .brand-logos-left { display: flex; align-items: center; gap: 1rem; }
-        .logo-group { display: flex; align-items: center; gap: 0.85rem; }
-        .brand-titles { text-align: left; margin-left: 0.75rem; flex: 1; }
-        .brand-titles h1 { font-size: 2.4rem; font-weight: 900; color: var(--gov-blue); line-height: 1.0; margin: 0; letter-spacing: -0.03em; }
-        .brand-titles p { font-size: 1.05rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; line-height: 1.2; }
+        .branding-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .brand-logos-left { display: flex; align-items: center; gap: 1.5rem; }
+        
+        .brand-global, .brand-agency { display: flex; align-items: center; gap: 0.75rem; }
+        .brand-divider { width: 1px; height: 50px; background: var(--border-light); margin: 0 0.5rem; }
 
-        .brand-right { display: flex; align-items: center; gap: 1.5rem; }
+        .ministry-text { display: flex; flex-direction: column; line-height: 1.1; font-family: 'Roboto', 'Noto Sans', sans-serif; }
+        .ministry-title { font-size: 1.35rem; font-weight: 700; color: #1f2937; letter-spacing: -0.01em; }
+        .ministry-subtitle { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+
+        .brand-titles { text-align: left; margin-left: 0.15rem; flex: 1; }
+        .brand-titles h1 { font-size: 2.1rem; font-weight: 900; color: var(--gov-blue); line-height: 1.0; margin: 0; letter-spacing: -0.03em; }
+        .brand-titles p { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; line-height: 1.2; }
+
+        .brand-right { display: flex; align-items: center; gap: 0.85rem; }
         .badge-logo, .mini-logo { position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         
-        /* Unified sizing based on shape for visual balance (Desktop - 100px) */
-        .mini-logo { height: 100px; width: auto; }
-        .logo-emblem { height: 95px; }
+        /* Unified sizing based on shape for visual balance (Desktop - 85px) */
+        .mini-logo { height: 85px; width: auto; }
+        .logo-emblem { height: 82px; }
         
-        .badge-logo { height: 100px; width: auto; min-width: 80px; }
-        .logo-life { height: 75px !important; } /* Balanced against 100px circles */
+        .badge-logo { height: 85px; width: auto; min-width: 70px; }
+        .logo-life { height: 64px !important; } /* Balanced against 85px circles */
+        .logo-azadi { height: 68px !important; } /* Balanced horizontal profile */
 
         .badge-logo:not(:last-child)::after {
-            content: ''; position: absolute; right: -0.75rem; top: 25%; height: 50%; width: 1px; background-color: var(--border-light);
+            content: ''; position: absolute; right: -0.425rem; top: 25%; height: 50%; width: 1px; background-color: var(--border-light);
         }
         
         .badge-logo img, .mini-logo img { max-height: 100%; max-width: 100%; object-fit: contain; }
@@ -256,18 +264,25 @@
             .about-title { font-size: 2rem; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid > div[style] { text-align: left !important; }
+            .container { padding: 0 30px; }
         }
 
         @@media (max-width: 768px) {
             .gov-strip { padding: 0.25rem 0; }
-            .gov-strip-inner { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; padding: 0 1rem; }
+            .gov-strip-inner { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
             .gov-left, .gov-strip-inner .brand-right { flex: 1; min-width: 0; }
             .gov-strip-inner .brand-right { justify-content: flex-end; }
             .util-dropdown-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
             
             .branding-strip { padding: 0.5rem 0; }
             .branding-inner { flex-direction: column; gap: 0.75rem; }
-            .brand-logos-left { flex-direction: row; width: 100%; justify-content: center; align-items: center; gap: 1rem; }
+            .brand-logos-left { flex-direction: column; width: 100%; justify-content: flex-start; align-items: flex-start; gap: 1rem; }
+            .brand-global, .brand-agency { width: 100%; justify-content: flex-start; align-items: center; }
+            .brand-divider { display: none; }
+            .ministry-text { text-align: left; white-space: normal; margin-left: 0.5rem; }
+            .ministry-title { font-size: 1.15rem; }
+            .ministry-subtitle { font-size: 0.9rem; }
+            
             .mini-logo { height: 50px; }
             .logo-emblem { height: 48px; }
             .brand-titles { margin-left: 0.5rem; text-align: left; }
@@ -276,6 +291,7 @@
             .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.75rem; flex-wrap: nowrap; gap: 1rem; margin-top: 0; }
             .badge-logo { height: 48px; min-width: 45px; }
             .logo-life { height: 38px !important; }
+            .logo-azadi { height: 40px !important; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -376,6 +392,7 @@
         }
 
         @@media (max-width: 576px) {
+            .container { padding: 0 15px; }
             .gov-strip-inner { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.35rem; padding-bottom: 0; }
             .gov-left { gap: 0.35rem; flex: 1; min-width: 0; }
             .gov-left span { font-size: 0.55rem; white-space: normal; line-height: 1.2; }
@@ -383,14 +400,16 @@
             .gov-strip-inner .brand-right > span { font-size: 0.55rem; padding-right: 5px; }
             .util-dropdown-btn { padding: 0.2rem 0.5rem; font-size: 0.65rem; }
             
-            .brand-logos-left { flex-direction: row; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; }
-            .logo-group { gap: 0.4rem; flex-shrink: 0; }
-            .logo-group .mini-logo { width: 34px; height: 34px; }
-            .brand-titles { text-align: left; min-width: 0; }
+            .brand-logos-left { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.75rem; width: 100%; }
+            .brand-global, .brand-agency { width: 100%; justify-content: flex-start; align-items: center; gap: 0.5rem; }
+            .ministry-text { text-align: left; margin-left: 0.25rem; }
+            .ministry-title { font-size: 0.95rem; line-height: 1.2; }
+            .ministry-subtitle { font-size: 0.7rem; }
             .brand-titles h1 { font-size: 1.4rem; }
             .brand-titles p { font-size: 0.75rem; line-height: 1.2; white-space: normal; }
             .branding-inner .brand-right { gap: 0.5rem; padding-top: 0.5rem; justify-content: center; }
             .badge-logo { height: 26px; min-width: 38px; }
+            .logo-life, .logo-azadi { height: 20px !important; }
             .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
             .about-title { font-size: 1.8rem; }
             
@@ -405,7 +424,7 @@
     <div class="gov-strip">
         <div class="container gov-strip-inner">
             <div class="gov-left">
-                <div class="flag-box"></div>
+                <img src="/images/india-flag.png" alt="India Flag" class="india-flag">
                 <span>भारत सरकार | Government of India</span>
             </div>
             <div class="brand-right" style="gap: 1rem;">
@@ -424,19 +443,29 @@
     <div class="branding-strip">
         <div class="container branding-inner">
             <div class="brand-logos-left">
-                <div class="logo-group">
+                <div class="brand-global">
                     <div class="mini-logo logo-emblem"><img src="/images/branding/logo_emblem.png" alt="Emblem" /></div>
-                    <div class="mini-logo"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
+                    <div class="ministry-text text-nowrap">
+                        <div class="ministry-title" data-i18n="ministryTitle">Ministry of Environment, Forest and Climate Change</div>
+                        <div class="ministry-subtitle" data-i18n="ministrySubtitle">Government of India</div>
+                    </div>
                 </div>
-                <div class="brand-titles">
-                    <h1>EADA</h1>
-                    <p data-i18n="brandEada">Environment Audit Designated Agency</p>
+                
+                <div class="brand-divider"></div>
+
+                <div class="brand-agency">
+                    <div class="mini-logo"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" style="height: 82px; width: auto; object-fit: contain;" /></div>
+                    <div class="mini-logo"><img src="/images/branding/logo_eada.png" alt="EADA" /></div>
+                    <div class="brand-titles">
+                        <h1>EADA</h1>
+                        <p data-i18n="brandEada">Environment Audit Designated Agency</p>
+                    </div>
                 </div>
             </div>
             <div class="brand-right">
-                <div class="badge-logo"><img src="/images/branding/logo_moefcc.png" alt="MoEFCC" /></div>
                 <div class="badge-logo logo-life"><img src="/images/branding/logo_life.png" alt="LiFE" /></div>
                 <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="badge-logo"><img src="/images/branding/logo_npc.png" alt="NPC" /></a>
+                <a href="https://amritmahotsav.nic.in/" target="_blank" class="badge-logo logo-azadi"><img src="/images/branding/logo_azadi.png" alt="Azadi Ka Amrit Mahotsav" /></a>
             </div>
         </div>
     </div>
@@ -453,7 +482,7 @@
             <ul class="nav-links" id="nav-menu">
                 <li><a href="/" class="nav-link" data-i18n="navHome">Home</a></li>
                 <li><a href="#about-section" class="nav-link" data-i18n="navAbout">About EADA</a></li>
-                <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link" data-i18n="navRules">Environment Audit Rules</a></li>
+                <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" class="nav-link" data-i18n="navRules">Environment Audit Rules 2025</a></li>
                 <li class="nav-item-dropdown">
                     <a href="#" class="nav-link nav-dropdown-trigger" onclick="return false;">
                         <span data-i18n="navGuidelines">Guidelines</span> 
@@ -599,7 +628,7 @@
                     <ul class="footer-links">
                         <li><a href="#" data-i18n="ftHome">Home</a></li>
                         <li><a href="#about-section" data-i18n="ftAbout">About EADA</a></li>
-                        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" data-i18n="ftRules">Enviroment Audit Rules</a></li>
+                        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202593627401.pdf" target="_blank" data-i18n="ftRules">Enviroment Audit Rules 2025</a></li>
                         <li><a href="#" data-i18n="ftNotices">Notices & Circulars</a></li>
                     </ul>
                 </div>
@@ -760,10 +789,12 @@
         // Complete Translation Map
         const translations = {
             en: {
+                ministryTitle: 'Ministry of Environment, Forest and Climate Change',
+                ministrySubtitle: 'Government of India',
                 brandEada: 'Environment Audit Designated Agency',
                 navHome: 'Home',
                 navAbout: 'About EADA',
-                navRules: 'Environment Audit Rules',
+                navRules: 'Environment Audit Rules 2025',
                 navGuidelines: 'Guidelines',
                 navCea: 'Guideline for CEA through RPL',
                 navRea: 'Guideline for REA',
@@ -776,26 +807,36 @@
                 modHeading: 'Mode of Certification / Registration',
                 modSoon1: 'Coming Soon',
                 modSoon2: 'Coming Soon',
+                modSoon3: 'Coming Soon',
                 ceaTitle: 'Certified Environment Auditor through Recognition of Prior Learning (RPL)',
                 modAccess1: 'Apply here &rarr;',
                 reaTitle: 'Registered Environment Auditor (REA)',
                 modAccess2: 'Apply here &rarr;',
+                nceTitle: 'National Certification Examination',
+                modAccess3: 'Apply here &rarr;',
                 aboutLabel: 'Who We Are',
                 aboutTitle: 'About Environment Audit Designated Agency',
                 aboutRoles: 'Roles and Responsibilities of EADA',
                 aboutP1: 'The Environment Audit Designated Agency (EADA) has been established under the Environment Audit Rules, 2025, notified by the Ministry of Environment, Forest and Climate Change (MoEF&CC) on 29 August 2025. The EADA is responsible for the overall management of the environmental audit framework in India.',
                 aboutP2: 'The framework is designed to strengthen compliance with major environmental legislations, including the Environment (Protection) Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980; the Wild Life (Protection) Act, 1972; and rules framed thereunder. It also supports compliance with regulatory approvals such as Environmental Clearance (EC), Consent to Establish (CTE), and Consent to Operate (CTO).',
-                aboutP3: 'Additionally, EADA shall maintain an online register of all Certified Environment Auditors and Registered Environment Auditors, which shall be publicly accessible. It shall also publish an annual report of its activities within six months from the end of each financial year and submit a copy to the Central Government within thirty days of its publication.',
                 aboutRolesIntro: 'The roles and responsibilities of the Environment Audit Designated Agency shall include, but not be limited to, the following:',
-                aboutRolesP1: 'The EADA is responsible for specifying minimum eligibility criteria for Certified Environment Auditors and developing screening methodologies, which may include conducting examinations and/or other processes to identify qualified candidates for their certification as Certified Environment Auditor. It is further responsible for certifying environment auditors, including renewal, suspension, withdrawal, or cancellation of such certifications, as well as specifying the criteria for registration of Certified Environment Auditors and managing their registration, including renewal, suspension, withdrawal, or cancellation.',
-                aboutRolesP2: 'EADA is also entrusted with monitoring the performance of Registered Environment Auditors and issuing directions as necessary. It facilitates capacity building through training programs, workshops, seminars, conferences, online courses, and other relevant initiatives for both Certified Environment Auditors and Registered Environment Auditors. Where required, EADA shall take disciplinary action and specify guidelines, procedures, and standards governing their functioning.',
-                aboutRolesP3: 'Additionally, EADA shall maintain an online register of all Certified Environment Auditors and Registered Environment Auditors, which shall be publicly accessible. It shall also publish an annual report of its activities within six months from the end of each financial year and submit a copy to the Central Government within thirty days of its publication.',
+                aboutRolesP1_1: 'Specifying minimum eligibility criteria for Certified Environment Auditors;',
+                aboutRolesP1_2: 'Developing screening methodologies, which may include conducting examinations and/or other processes to identify qualified candidates for their certification as Certified Environment Auditor;',
+                aboutRolesP1_3: 'Certifying environment auditors including renewal, suspension, withdrawal, or cancellation of such certifications;',
+                aboutRolesP1_4: 'Specifying the criteria for registration of the Certified Environment Auditor;',
+                aboutRolesP1_5: 'Registration of the Certified Environment Auditor including renewal, suspension, withdrawal, or cancellation of such registrations;',
+                aboutRolesP1_6: 'Monitoring the performance of Registered Environment Auditor and issuing directions as necessary;',
+                aboutRolesP1_7: 'Facilitating capacity building through training programs, workshops, seminars, conferences, online courses, and other relevant initiatives for Certified Environment Auditor and Registered Environment Auditor;',
+                aboutRolesP1_8: 'Taking disciplinary action against Certified Environment Auditor and Registered Environment Auditor, wherever required;',
+                aboutRolesP1_9: 'Specifying guidelines, procedures, and standards governing the functioning of Certified Environment Auditor and Registered Environment Auditor;',
+                aboutRolesP1_10: 'Maintaining an online register of all Certified Environment Auditors and Registered Environment Auditors, which shall be publicly accessible;',
+                aboutRolesP1_11: 'Publishing an annual report of its activities within six months from the end of each financial year, and submitting a copy of the report to the Central Government within thirty days of its publication.',
                 footerTitle: 'Environment Audit Designated Agency',
                 footerDesc: 'EADA is an initiative of the Ministry of Environment, Forest and Climate Change (MoEF&CC), Government of India.',
                 ftQuick: 'Quick Links',
                 ftHome: 'Home',
                 ftAbout: 'About EADA',
-                ftRules: 'Enviroment Audit Rules',
+                ftRules: 'Enviroment Audit Rules 2025',
                 ftNotices: 'Notices & Circulars',
                 ftPolicy: 'Policies',
                 ftPrivacy: 'Privacy Policy',
@@ -808,6 +849,8 @@
                 ftCopyright: '&copy; 2026 Environment Audit Designated Agency. All Rights Reserved. | Government of India'
             },
             hi: {
+                ministryTitle: 'पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय',
+                ministrySubtitle: 'भारत सरकार',
                 brandEada: 'पर्यावरण लेखापरीक्षा नामित एजेंसी',
                 navHome: 'होम',
                 navAbout: 'ई.ए.डी.ए. के बारे में',
@@ -824,19 +867,30 @@
                 modHeading: 'प्रविष्टि के तरीके',
                 modSoon1: 'जल्द आ रहा है',
                 modSoon2: 'जल्द आ रहा है',
+                modSoon3: 'जल्द आ रहा है',
                 ceaTitle: 'प्रायर लर्निंग (RPL) की मान्यता के माध्यम से प्रमाणित पर्यावरण लेखापरीक्षक',
                 modAccess1: 'यहां आवेदन करें &rarr;',
-                reaTitle: 'आवेदन के लिए पंजीकृत पर्यावरण लेखापरीक्षक (REA)',
+                reaTitle: 'पंजीकृत पर्यावरण लेखापरीक्षक (REA)',
                 modAccess2: 'यहां आवेदन करें &rarr;',
+                nceTitle: 'राष्ट्रीय प्रमाणन परीक्षा',
+                modAccess3: 'यहां आवेदन करें &rarr;',
                 aboutLabel: 'हम कौन हैं',
                 aboutTitle: 'पर्यावरण लेखापरीक्षा नामित एजेंसी के बारे में',
                 aboutRoles: 'EADA की भूमिका और जिम्मेदारियां',
                 aboutP1: 'पर्यावरण लेखापरीक्षा नामित एजेंसी (EADA) एक भूमिका है जिसे पर्यावरण लेखापरीक्षा नियम, 2025 के तहत स्थापित किया गया है, जिसे 29 अगस्त 2025 को पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय (MoEF&CC) द्वारा अधिसूचित किया गया था। EADA भारत में पर्यावरण लेखापरीक्षा ढांचे के समग्र प्रबंधन के लिए जिम्मेदार है।',
                 aboutP2: 'यह ढांचा प्रमुख पर्यावरणीय कानूनों के अनुपालन को मजबूत करने के लिए तैयार किया गया है, जिसमें पर्यावरण (संरक्षण) अधिनियम, 1986; जल (प्रदूषण निवारण और नियंत्रण) अधिनियम, 1974; वायु (प्रदूषण निवारण और नियंत्रण) अधिनियम, 1981; वन (संरक्षण एवं संवर्धन) अधिनियम, 1980; वन्य जीव (संरक्षण) अधिनियम, 1972 और उसके तहत बनाए गए नियम शामिल हैं।',
                 aboutRolesIntro: 'पर्यावरण लेखापरीक्षा नामित एजेंसी की भूमिकाओं और जिम्मेदारियों में निम्नलिखित शामिल होंगे, लेकिन ये इन्हीं तक सीमित नहीं होंगे:',
-                aboutRolesP1: 'EADA प्रमाणित पर्यावरण लेखापरीक्षकों के लिए न्यूनतम पात्रता मानदंड निर्दिष्ट करने और स्क्रीनिंग कार्यप्रणाली विकसित करने के लिए जिम्मेदार है, जिसमें प्रमाणित पर्यावरण लेखापरीक्षक के रूप में उनके प्रमाणन के लिए योग्य उम्मीदवारों की पहचान करने हेतु परीक्षा और/या अन्य प्रक्रियाएं आयोजित करना शामिल हो सकता है। यह पर्यावरण लेखापरीक्षकों को प्रमाणित करने के लिए आगे जिम्मेदार है, जिसमें ऐसे प्रमाणन का नवीनीकरण, निलंबन, वापसी या रद्दीकरण शामिल है, साथ ही प्रमाणित पर्यावरण लेखापरीक्षकों के पंजीकरण के मानदंड निर्दिष्ट करना और उनके पंजीकरण का प्रबंधन करना शामिल है।',
-                aboutRolesP2: 'EADA को पंजीकृत पर्यावरण लेखापरीक्षकों के प्रदर्शन की निगरानी करने और आवश्यकतानुसार निर्देश जारी करने का कार्य भी सौंपा गया है। यह प्रमाणित पर्यावरण लेखापरीक्षकों और पंजीकृत पर्यावरण लेखापरीक्षकों दोनों के लिए प्रशिक्षण कार्यक्रमों, कार्यशालाओं, सेमिनारों, सम्मेलनों, ऑनलाइन पाठ्यक्रमों और अन्य प्रासंगिक पहलों के माध्यम से क्षमता निर्माण की सुविधा प्रदान करता है। जहां आवश्यक हो, EADA अनुशासनात्मक कार्रवाई करेगा और उनके कामकाज को नियंत्रित करने वाले दिशानिर्देश, प्रक्रियाएं और मानक निर्दिष्ट करेगा।',
-                aboutRolesP3: 'इसके अतिरिक्त, EADA सभी प्रमाणित पर्यावरण लेखापरीक्षकों और पंजीकृत पर्यावरण लेखापरीक्षकों का एक ऑनलाइन रजिस्टर बनाए रखेगा, जो सार्वजनिक रूप से सुलभ होगा। यह प्रत्येक वित्तीय वर्ष की समाप्ति से छह महीने के भीतर अपनी गतिविधियों की एक वार्षिक रिपोर्ट भी प्रकाशित करेगा और इसके प्रकाशन के तीस दिनों के भीतर केंद्र सरकार को एक प्रति प्रस्तुत करेगा।',
+                aboutRolesP1_1: 'प्रमाणित पर्यावरण लेखापरीक्षकों के लिए न्यूनतम पात्रता मानदंड निर्दिष्ट करना;',
+                aboutRolesP1_2: 'स्क्रीनिंग कार्यप्रणाली विकसित करना, जिसमें प्रमाणित पर्यावरण लेखापरीक्षक के रूप में उनके प्रमाणन के लिए योग्य उम्मीदवारों की पहचान करने हेतु परीक्षा और/या अन्य प्रक्रियाएं आयोजित करना शामिल हो सकता है;',
+                aboutRolesP1_3: 'नवीनीकरण, निलंबन, वापसी या प्रमाणन को रद्द करने सहित पर्यावरण लेखापरीक्षकों को प्रमाणित करना;',
+                aboutRolesP1_4: 'प्रमाणित पर्यावरण लेखापरीक्षक के पंजीकरण के मानदंड निर्दिष्ट करना;',
+                aboutRolesP1_5: 'नवीनीकरण, निलंबन, वापसी या पंजीकरण को रद्द करने सहित प्रमाणित पर्यावरण लेखापरीक्षक का पंजीकरण;',
+                aboutRolesP1_6: 'पंजीकृत पर्यावरण लेखापरीक्षक के प्रदर्शन की निगरानी करना और आवश्यकतानुसार निर्देश जारी करना;',
+                aboutRolesP1_7: 'प्रमाणित पर्यावरण लेखापरीक्षक और पंजीकृत पर्यावरण लेखापरीक्षक के लिए प्रशिक्षण कार्यक्रमों, कार्यशालाओं, सेमिनारों, सम्मेलनों, ऑनलाइन पाठ्यक्रमों और अन्य प्रासंगिक पहलों के माध्यम से क्षमता निर्माण की सुविधा प्रदान करना;',
+                aboutRolesP1_8: 'जहां भी आवश्यक हो, प्रमाणित पर्यावरण लेखापरीक्षक और पंजीकृत पर्यावरण लेखापरीक्षक के खिलाफ अनुशासनात्मक कार्रवाई करना;',
+                aboutRolesP1_9: 'प्रमाणित पर्यावरण लेखापरीक्षक और पंजीकृत पर्यावरण लेखापरीक्षक के कामकाज को नियंत्रित करने वाले दिशानिर्देश, प्रक्रियाएं और मानक निर्दिष्ट करना;',
+                aboutRolesP1_10: 'सभी प्रमाणित पर्यावरण लेखापरीक्षकों और पंजीकृत पर्यावरण लेखापरीक्षकों का एक ऑनलाइन रजिस्टर बनाए रखना, जो सार्वजनिक रूप से सुलभ होगा;',
+                aboutRolesP1_11: 'प्रत्येक वित्तीय वर्ष की समाप्ति से छह महीने के भीतर अपनी गतिविधियों की एक वार्षिक रिपोर्ट प्रकाशित करना, और इसकी एक प्रति केंद्र सरकार को प्रस्तुत करना।',
                 footerTitle: 'पर्यावरण लेखापरीक्षा नामित एजेंसी',
                 footerDesc: 'ई.ए.डी.ए. पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय (MoEF&CC), भारत सरकार की एक पहल है।',
                 ftQuick: 'त्वरित लिंक',
