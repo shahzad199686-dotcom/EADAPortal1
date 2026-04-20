@@ -78,8 +78,8 @@
         .logo-emblem { height: 82px; }
         
         .badge-logo { height: 85px; width: auto; min-width: 70px; }
-        .logo-life { height: 64px !important; } /* Balanced against 85px circles */
-        .logo-azadi { height: 68px !important; } /* Balanced horizontal profile */
+        .logo-life { height: 64px; } /* Proportional to 85px circles (approx 0.75 ratio) */
+        .logo-azadi { height: 66px; }
 
         .badge-logo:not(:last-child)::after {
             content: ''; position: absolute; right: -0.425rem; top: 25%; height: 50%; width: 1px; background-color: var(--border-light);
@@ -264,6 +264,7 @@
             .mini-logo { height: 75px; }
             .logo-emblem { height: 72px; }
             .badge-logo { height: 75px; min-width: 65px; }
+            .logo-life { height: 56px; }
             .brand-logos-left { gap: 1rem; }
         }
 
@@ -273,6 +274,7 @@
             .mini-logo { height: 60px; }
             .logo-emblem { height: 58px; }
             .badge-logo { height: 60px; min-width: 55px; }
+            .logo-life { height: 45px; }
             .brand-logos-left { gap: 0.75rem; }
             .brand-divider { height: 40px; margin: 0 0.25rem; }
         }
@@ -289,18 +291,20 @@
             .mini-logo { height: 50px; }
             .logo-emblem { height: 48px; }
             .badge-logo { height: 50px; min-width: 45px; }
+            .logo-life { height: 38px; }
             .brand-titles p { white-space: normal; line-height: 1.2; }
             .branding-inner { gap: 0.5rem; }
         }
 
         @@media (max-width: 900px) {
             .brand-titles h1 { font-size: 1.25rem; }
-            .brand-titles p { display: none; } /* Subtitle hide to prevent height bloating */
+            .brand-titles p { display: block; font-size: 0.75rem; white-space: normal; line-height: 1.2; } 
             .brand-logos-left { gap: 0.5rem; }
             .brand-right { gap: 0.5rem; }
             .mini-logo { height: 45px; }
             .logo-emblem { height: 44px; }
             .badge-logo { height: 45px; min-width: 40px; }
+            .logo-life { height: 34px; }
         }
 
         @@media (max-width: 820px) {
@@ -308,6 +312,7 @@
             .brand-logos-left { width: 100%; justify-content: center; margin-bottom: 0.25rem; }
             .brand-right { width: 100%; justify-content: center; }
             .brand-divider { display: none; }
+            .logo-life { height: 36px; }
         }
 
         @@media (max-width: 768px) {
@@ -333,8 +338,8 @@
             .brand-titles p { font-size: 0.8rem; margin-top: 0; }
             .branding-inner .brand-right { width: 100%; justify-content: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; flex-wrap: nowrap; gap: 0.75rem; margin-top: 0.25rem; }
             .badge-logo { height: 42px; min-width: 40px; }
-            .logo-life { height: 32px !important; }
-            .logo-azadi { height: 34px !important; }
+            .logo-life { height: 32px; }
+            .logo-azadi { height: 34px; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -452,7 +457,7 @@
             .brand-titles p { font-size: 0.75rem; line-height: 1.2; white-space: normal; }
             .branding-inner .brand-right { gap: 0.6rem; padding-top: 0.5rem; justify-content: center; }
             .badge-logo { height: 38px; min-width: 36px; }
-            .logo-life, .logo-azadi { height: 26px !important; }
+            .logo-life, .logo-azadi { height: 26px; }
             .notice-badge { font-size: 0.65rem; padding: 0 0.75rem; }
             .about-title { font-size: 1.8rem; }
             
@@ -473,7 +478,7 @@
             .logo-emblem { height: 36px; }
             .branding-inner .brand-right { gap: 0.5rem; padding-top: 0.4rem; }
             .badge-logo { height: 34px; min-width: 32px; }
-            .logo-life, .logo-azadi { height: 24px !important; }
+            .logo-life, .logo-azadi { height: 24px; }
         }
 
         @@media (max-width: 375px) {
@@ -483,7 +488,7 @@
             .mini-logo { height: 34px; }
             .logo-emblem { height: 32px; }
             .badge-logo { height: 32px; min-width: 30px; }
-            .logo-life, .logo-azadi { height: 22px !important; }
+            .logo-life, .logo-azadi { height: 22px; }
         }
     </style>
 </head>
