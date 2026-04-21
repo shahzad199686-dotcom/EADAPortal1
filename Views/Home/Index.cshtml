@@ -267,28 +267,67 @@
         .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #94a3b8; text-align: center; }
         
         /* --- Media Coverage Section --- */
-        .media-section { padding: 5rem 0; background: #f8fafc; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); overflow: hidden; }
-        .media-title-wrap { text-align: center; margin-bottom: 3.5rem; }
-        .media-title-wrap h2 { font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; position: relative; display: inline-block; }
-        .media-title-wrap h2::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 70px; height: 4px; background: var(--gov-blue); border-radius: 2px; }
-
-        .marquee-wrapper { width: 100%; overflow: hidden; position: relative; padding: 1.5rem 0; }
-        .logo-track { display: flex; width: max-content; animation: media-scroll 45s linear infinite; gap: 2rem; align-items: center; }
-        .logo-track:hover { animation-play-state: paused; }
-
-        @@keyframes media-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .media-section { 
+            padding: 6rem 0; 
+            background: radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(6, 78, 59, 0.03) 0%, transparent 50%),
+                        #ffffff;
+            border-top: 1px solid var(--border-light); 
+            border-bottom: 1px solid var(--border-light); 
+            overflow: hidden; 
+            position: relative;
         }
-
-        .media-logo-card {
-            flex: 0 0 240px; height: 85px; background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; padding: 1.25rem; text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .media-logo-card:hover { transform: translateY(-6px); border-color: var(--gov-blue); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.1); }
         
-        .media-name { font-size: 0.9rem; font-weight: 700; color: #334155; text-align: center; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.05em; font-family: inherit; }
+        /* Subtle pattern overlay */
+        .media-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px; opacity: 0.5; pointer-events: none;
+        }
+
+        .media-title-wrap { text-align: center; margin-bottom: 4rem; position: relative; z-index: 2; }
+        .media-title-wrap h2 { font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-bottom: 0.75rem; display: inline-block; letter-spacing: -0.03em; }
+        .media-title-divider { width: 80px; height: 4px; background: var(--gov-blue); margin: 0 auto; border-radius: 2px; }
+
+        .media-carousel-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; padding: 0 20px; }
+        .media-viewport { overflow: hidden; border-radius: 16px; }
+        .media-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+
+        .media-card {
+            flex: 0 0 100%; padding: 20px;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; outline: none;
+        }
+
+        .media-card-inner {
+            width: 100%; background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px;
+            padding: 3.5rem 3rem; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08); transition: all 0.4s ease; position: relative;
+        }
+        .media-card:hover .media-card-inner { transform: translateY(-8px) scale(1.01); border-color: var(--gov-blue); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.12); }
+
+        /* Left-Center Headline */
+        .media-headline { font-size: 1.85rem; font-weight: 700; color: #0f172a; line-height: 1.35; max-width: 85%; margin-bottom: 2rem; position: relative; z-index: 1; }
+        
+        /* Decorative Accents */
+        .card-accent-line { width: 40px; height: 2px; background: var(--accent-gold); margin-bottom: 1.5rem; }
+        .card-decoration { position: absolute; top: 2rem; right: 2.5rem; font-size: 4rem; color: rgba(15, 23, 42, 0.04); font-weight: 900; line-height: 1; pointer-events: none; }
+
+        /* Bottom-Right Source */
+        .media-source-wrap { align-self: flex-end; text-align: right; margin-top: auto; }
+        .media-source-name { font-size: 0.85rem; font-weight: 800; color: var(--forest-green); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
+        
+        /* Slider Dots */
+        .media-dots { display: flex; justify-content: center; gap: 10px; margin-top: 3rem; position: relative; z-index: 2; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
+        .dot.active { background: var(--gov-blue); width: 25px; border-radius: 5px; }
+
+        @@media (max-width: 768px) {
+            .media-section { padding: 4rem 0; }
+            .media-card-inner { padding: 2.5rem 2rem; min-height: 240px; }
+            .media-headline { font-size: 1.4rem; max-width: 100%; }
+            .media-title-wrap h2 { font-size: 1.85rem; }
+        }
 
         /* Responsiveness */
         @@media (max-width: 1366px) {
@@ -712,102 +751,214 @@
     <section id="media-section" class="media-section">
         <div class="media-title-wrap">
             <h2 data-i18n="mediaTitle">Media Coverage</h2>
+            <div class="media-title-divider"></div>
         </div>
-        <div class="marquee-wrapper">
-            <div class="logo-track">
-                <!-- 1. Construction World -->
-                <a href="https://www.constructionworld.in/policy-updates-and-economic-news/national-productivity-council-named-environment-audit-agency/88444" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Construction World</span>
-                </a>
-                <!-- 2. First Construction Council -->
-                <a href="https://firstconstructioncouncil.com/article/914774" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">First Construction</span>
-                </a>
-                <!-- 3. Sanskriti IAS -->
-                <a href="https://www.sanskritiias.com/hindi/current-affairs/national-productivity-council" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Sanskriti IAS</span>
-                </a>
-                <!-- 4. Bankersadda -->
-                <a href="https://www.bankersadda.com/daily-current-affairs-quiz-24th-march-2026-check-important-questions-here/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Bankersadda</span>
-                </a>
-                <!-- 5. Hindustan Times -->
-                <a href="https://www.hindustantimes.com/india-news/national-productivity-council-to-strengthen-environmental-compliance-mechanisms-101774084581634.html" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Hindustan Times</span>
-                </a>
-                <!-- 6. Deccan Chronicle -->
-                <a href="https://www.deccanchronicle.com/nation/in-other-news/npc-to-act-as-designated-agency-for-environment-audit-1945349" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Deccan Chronicle</span>
-                </a>
-                <!-- 7. Financial Express -->
-                <a href="https://www.financialexpress.com/business/news/productivity-council-will-manage-environment-audit-framework/4180024/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Financial Express</span>
-                </a>
-                <!-- 8. Ziraat Times -->
-                <a href="https://ziraattimes.com/2026/03/npc-appointed-as-environment-audit-agency-to-strengthen-compliance-across-india/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Ziraat Times</span>
-                </a>
-                <!-- 9. ABC Live -->
-                <a href="https://abclive.in/2026/03/21/npc-environment-audit-designated-agency-critical-analysis/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">ABC Live</span>
-                </a>
-                <!-- 10. Devdiscourse -->
-                <a href="https://www.devdiscourse.com/article/science-environment/3845716-national-productivity-council-champions-environmental-auditing" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Devdiscourse</span>
-                </a>
-                <!-- 11. MSN -->
-                <a href="https://www.msn.com/en-in/news/India/national-productivity-council-to-strengthen-environmental-compliance-mechanisms/ar-AA1Z6hAo" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">MSN</span>
-                </a>
-                <!-- 12. The Balanced News -->
-                <a href="https://thebalanced.news/politics/ce8a26cd-2e3b-46eb-90de-20291441f779/national-productivity-council-designated-as-environment-audit-agency-under-2025-rules" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">The Balanced News</span>
-                </a>
-                <!-- 13. The News Hour -->
-                <a href="https://www.thenewshour.org/other-news/npc-signs-agreement-with-ministry-of-environment-forest-and-climate-change-moefcc-to-act-as-environment-audit-designated-agency/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">The News Hour</span>
-                </a>
-                <!-- 14. Current Affairs (Adda247) -->
-                <a href="https://currentaffairs.adda247.com/what-the-npc-moefcc-agreement-means-for-environmental-governance/" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Adda247</span>
-                </a>
-                <!-- 15. IBC24 -->
-                <a href="https://www.ibc24.in/country/national-productivity-council-to-act-as-nodal-agency-for-environmental-audit-3518741.html" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">IBC24</span>
-                </a>
-                <!-- 16. TaxTMI -->
-                <a href="https://www.taxtmi.com/news?id=71657" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">TaxTMI</span>
-                </a>
-                <!-- 17. Magzter -->
-                <a href="https://www.magzter.com/stories/newspaper/Financial-Express-Mumbai/PRODUCTIVITY-COUNCIL-TO-MANAGE-ENVIRONMENT-AUDIT-FRAMEWORK" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">Magzter</span>
-                </a>
-                <!-- 18. The Week -->
-                <a href="https://www.theweek.in/wire-updates/national/2026/03/21/national-productivity-council-to-act-as-designated-agency-for-environment-audit.html" target="_blank" rel="noopener noreferrer" class="media-logo-card">
-                    <span class="media-name">The Week</span>
-                </a>
 
-                <!-- Duplicate for Loop -->
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Construction World</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">First Construction</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Sanskriti IAS</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Bankersadda</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Hindustan Times</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Deccan Chronicle</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Financial Express</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Ziraat Times</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">ABC Live</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Devdiscourse</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">MSN</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">The Balanced News</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">The News Hour</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Adda247</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">IBC24</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">TaxTMI</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">Magzter</span></div>
-                <div class="media-logo-card" aria-hidden="true"><span class="media-name">The Week</span></div>
+        <div class="media-carousel-container">
+            <div class="media-viewport">
+                <div class="media-track" id="media-track">
+                    <!-- 1. Construction World -->
+                    <a href="https://www.constructionworld.in/policy-updates-and-economic-news/national-productivity-council-named-environment-audit-agency/88444" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">National Productivity Council named Environment Audit Agency</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Construction World</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 2. First Construction Council -->
+                    <a href="https://firstconstructioncouncil.com/article/914774" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to play critical role in environmental auditing framework</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">First Construction</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 3. Sanskriti IAS -->
+                    <a href="https://www.sanskritiias.com/hindi/current-affairs/national-productivity-council" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC appointed as Environment Audit Designated Agency</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Sanskriti IAS</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 4. Bankersadda -->
+                    <a href="https://www.bankersadda.com/daily-current-affairs-quiz-24th-march-2026-check-important-questions-here/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to strengthen environmental compliance across India</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Bankersadda</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 5. Hindustan Times -->
+                    <a href="https://www.hindustantimes.com/india-news/national-productivity-council-to-strengthen-environmental-compliance-mechanisms-101774084581634.html" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to strengthen environmental compliance mechanisms</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Hindustan Times</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 6. Deccan Chronicle -->
+                    <a href="https://www.deccanchronicle.com/nation/in-other-news/npc-to-act-as-designated-agency-for-environment-audit-1945349" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to act as designated agency for environment audit</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Deccan Chronicle</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 7. Financial Express -->
+                    <a href="https://www.financialexpress.com/business/news/productivity-council-will-manage-environment-audit-framework/4180024/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">Productivity Council will manage environment audit framework</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Financial Express</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 8. Ziraat Times -->
+                    <a href="https://ziraattimes.com/2026/03/npc-appointed-as-environment-audit-agency-to-strengthen-compliance-across-india/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC appointed as Environment Audit Agency to strengthen compliance</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Ziraat Times</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 9. ABC Live -->
+                    <a href="https://abclive.in/2026/03/21/npc-environment-audit-designated-agency-critical-analysis/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC Environment Audit Designated Agency : A Critical Analysis</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">ABC Live</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 10. Devdiscourse -->
+                    <a href="https://www.devdiscourse.com/article/science-environment/3845716-national-productivity-council-champions-environmental-auditing" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC champions environmental auditing across India</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Devdiscourse</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 11. MSN -->
+                    <a href="https://www.msn.com/en-in/news/India/national-productivity-council-to-strengthen-environmental-compliance-mechanisms/ar-AA1Z6hAo" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to lead national environmental audit framework</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">MSN</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 12. The Balanced News -->
+                    <a href="https://thebalanced.news/politics/ce8a26cd-2e3b-46eb-90de-20291441f779/national-productivity-council-designated-as-environment-audit-agency-under-2025-rules" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC designated as Environment Audit Agency under 2025 Rules</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">The Balanced News</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 13. The News Hour -->
+                    <a href="https://www.thenewshour.org/other-news/npc-signs-agreement-with-ministry-of-environment-forest-and-climate-change-moefcc-to-act-as-environment-audit-designated-agency/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC signs agreement with MoEFCC for environment audit</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">The News Hour</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 14. Current Affairs (Adda247) -->
+                    <a href="https://currentaffairs.adda247.com/what-the-npc-moefcc-agreement-means-for-environmental-governance/" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">What the NPC-MoEFCC agreement means for environmental governance</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Adda247</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 15. IBC24 -->
+                    <a href="https://www.ibc24.in/country/national-productivity-council-to-act-as-nodal-agency-for-environmental-audit-3518741.html" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to act as nodal agency for environmental audit</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">IBC24</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 16. TaxTMI -->
+                    <a href="https://www.taxtmi.com/news?id=71657" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">Environment Audit Rules 2025: NPC named Designated Agency</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">TaxTMI</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 17. Magzter -->
+                    <a href="https://www.magzter.com/stories/newspaper/Financial-Express-Mumbai/PRODUCTIVITY-COUNCIL-TO-MANAGE-ENVIRONMENT-AUDIT-FRAMEWORK" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">Productivity Council will manage environmental framework</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">Magzter</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- 18. The Week -->
+                    <a href="https://www.theweek.in/wire-updates/national/2026/03/21/national-productivity-council-to-act-as-designated-agency-for-environment-audit.html" target="_blank" rel="noopener noreferrer" class="media-card">
+                        <article class="media-card-inner">
+                            <div class="card-decoration">“</div>
+                            <div class="card-accent-line"></div>
+                            <h3 class="media-headline">NPC to act as designated agency for environment audit</h3>
+                            <div class="media-source-wrap">
+                                <span class="media-source-name">The Week</span>
+                            </div>
+                        </article>
+                    </a>
+                </div>
             </div>
+
+            <div class="media-dots" id="media-dots"></div>
         </div>
     </section>
 
@@ -1134,6 +1285,55 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('eada_lang') || 'en';
             setLanguage(savedLang);
+
+            // --- Media Slider Logic ---
+            const mediaTrack = document.getElementById('media-track');
+            const mediaCards = document.querySelectorAll('.media-card');
+            const mediaDotsContainer = document.getElementById('media-dots');
+            let mediaIndex = 0;
+            let mediaInterval;
+
+            if (mediaTrack && mediaCards.length > 0) {
+                // Create Dots
+                mediaCards.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToMediaSlide(i));
+                    mediaDotsContainer.appendChild(dot);
+                });
+
+                const dots = document.querySelectorAll('.media-dots .dot');
+
+                function updateMediaSlider() {
+                    mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
+                    dots.forEach((d, i) => d.classList.toggle('active', i === mediaIndex));
+                }
+
+                function nextMediaSlide() {
+                    mediaIndex = (mediaIndex + 1) % mediaCards.length;
+                    updateMediaSlider();
+                }
+
+                function goToMediaSlide(index) {
+                    mediaIndex = index;
+                    updateMediaSlider();
+                    resetMediaInterval();
+                }
+
+                function resetMediaInterval() {
+                    clearInterval(mediaInterval);
+                    mediaInterval = setInterval(nextMediaSlide, 6000);
+                }
+
+                // Start Autoplay
+                mediaInterval = setInterval(nextMediaSlide, 6000);
+
+                // Pause on hover
+                const mediaSection = document.getElementById('media-section');
+                mediaSection?.addEventListener('mouseenter', () => clearInterval(mediaInterval));
+                mediaSection?.addEventListener('mouseleave', () => resetMediaInterval());
+            }
         });
 
         document.getElementById('lang-en')?.addEventListener('click', (e) => { e.preventDefault(); setLanguage('en'); });
