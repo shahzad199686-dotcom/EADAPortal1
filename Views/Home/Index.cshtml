@@ -613,6 +613,30 @@
             .badge-logo { height: 32px; min-width: 30px; }
             .logo-life, .logo-azadi { height: 22px; }
         }
+
+        /* --- Big Screen / Large Monitor Optimizations --- */
+        @@media (min-width: 1600px) {
+            :root { --container-w: 1520px; }
+            .about-wrapper { max-width: 1300px; }
+            .media-carousel-wrapper { max-width: 1450px; }
+            .footer-fluid-wrapper { max-width: 1520px; }
+        }
+
+        @@media (min-width: 1920px) {
+            :root { --container-w: 1780px; }
+            .about-wrapper { max-width: 1500px; }
+            .media-carousel-wrapper { max-width: 1650px; }
+            .footer-fluid-wrapper { max-width: 1780px; }
+            .container { padding: 0 40px; }
+        }
+
+        @@media (min-width: 2560px) {
+            :root { --container-w: 2300px; }
+            .about-wrapper { max-width: 1800px; }
+            .media-carousel-wrapper { max-width: 2100px; }
+            .footer-fluid-wrapper { max-width: 2300px; }
+            .container { padding: 0 60px; }
+        }
     </style>
 </head>
 <body>
@@ -701,6 +725,7 @@
                     </div>
                 </li>
                 <li><a href="#media-section" class="nav-link" data-i18n="navMedia">Media</a></li>
+                <li><a href="/Home/DownloadTeam" class="nav-link">Team</a></li>
                 <li><a href="#contact-section" class="nav-link" data-i18n="navContact">Contact</a></li>
             </ul>
         </div>
