@@ -82,14 +82,38 @@
         .min-hindi { font-size: 1.05rem; font-weight: 600; color: #064e3b; margin: 0; }
         .min-english { font-size: 1.05rem; font-weight: 700; color: #064e3b; margin: 0; }
 
-        /* Right Section: All Logos */
-        .branding-right { 
-            flex: 0 0 auto; 
-            gap: 1.25rem; 
+        /* --- Normalizing Logo Containers --- */
+        .brand-logo-box {
+            width: 90px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
-        .logo-item { height: 55px; width: auto; display: flex; align-items: center; position: relative; }
-        .logo-item img { height: 100%; width: auto; object-fit: contain; }
-        .logo-life-refined { height: 85% !important; margin: auto; }
+        .brand-logo-box img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Perceptual Scaling for Visual Balance */
+        .life-logo img { transform: scale(0.85); }
+        .npc-logo img { transform: scale(0.95); }
+
+        /* Responsive Behavior for Branding Strip Logos */
+        @@media (max-width: 1024px) {
+            .brand-logo-box { height: 55px; width: 75px; }
+        }
+        @@media (max-width: 768px) {
+            .brand-logo-box { height: 45px; width: 65px; }
+        }
+
+        /* Vertical dividers for logos in right section */
+        .branding-right .brand-logo-box:not(:last-child)::after {
+            content: ''; position: absolute; right: -0.625rem; top: 20%; height: 60%; width: 1px; background-color: var(--border-light);
+        }
 
         /* Vertical dividers for logos */
         .logo-item:not(:last-child)::after {
@@ -266,75 +290,121 @@
         
         .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #94a3b8; text-align: center; }
         
-        /* --- Media Coverage Section --- */
+        /* --- Media Coverage Section (Reference Match) --- */
         .media-section { 
-            padding: 6rem 0; 
-            background: radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.03) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(6, 78, 59, 0.03) 0%, transparent 50%),
-                        #ffffff;
+            padding: 8rem 0; 
+            background-color: #fcfdfe;
             border-top: 1px solid var(--border-light); 
             border-bottom: 1px solid var(--border-light); 
             overflow: hidden; 
             position: relative;
         }
         
-        /* Subtle pattern overlay */
+        /* Reference Background Decorations */
+        .media-section::before, .media-section::after {
+            content: ''; position: absolute; width: 150px; height: 150px; pointer-events: none; opacity: 0.8;
+        }
+        /* Top Left Dots */
         .media-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px; opacity: 0.5; pointer-events: none;
+            top: 40px; left: 40px;
+            background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 16px 16px; width: 120px; height: 120px;
         }
-
-        .media-title-wrap { text-align: center; margin-bottom: 4rem; position: relative; z-index: 2; }
-        .media-title-wrap h2 { font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-bottom: 0.75rem; display: inline-block; letter-spacing: -0.03em; }
-        .media-title-divider { width: 80px; height: 4px; background: var(--gov-blue); margin: 0 auto; border-radius: 2px; }
-
-        .media-carousel-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; padding: 0 20px; }
-        .media-viewport { overflow: hidden; border-radius: 16px; }
-        .media-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-
-        .media-card {
-            flex: 0 0 100%; padding: 20px;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; outline: none;
+        /* Bottom Right Dots */
+        .media-section::after {
+            bottom: 40px; right: 40px;
+            background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 16px 16px; width: 120px; height: 120px;
         }
-
-        .media-card-inner {
-            width: 100%; background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px;
-            padding: 3.5rem 3rem; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08); transition: all 0.4s ease; position: relative;
-        }
-        .media-card:hover .media-card-inner { transform: translateY(-8px) scale(1.01); border-color: var(--gov-blue); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.12); }
-
-        /* Left-Center Headline */
-        .media-headline { font-size: 1.85rem; font-weight: 700; color: #0f172a; line-height: 1.35; max-width: 85%; margin-bottom: 2rem; position: relative; z-index: 1; }
         
-        /* Decorative Accents */
-        .card-accent-line { width: 40px; height: 2px; background: var(--accent-gold); margin-bottom: 1.5rem; }
-        .card-decoration { position: absolute; top: 2rem; right: 2.5rem; font-size: 4rem; color: rgba(15, 23, 42, 0.04); font-weight: 900; line-height: 1; pointer-events: none; }
+        .media-bg-ornament {
+            position: absolute; top: 0; right: 0; width: 400px; height: 400px;
+            background: radial-gradient(circle at 100% 0%, transparent 60%, rgba(15, 23, 42, 0.03) 100%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .media-bg-ornament-left {
+            position: absolute; bottom: 0; left: 0; width: 300px; height: 300px;
+            background: radial-gradient(circle at 0% 100%, transparent 70%, rgba(6, 78, 59, 0.02) 100%);
+            border-radius: 50%; pointer-events: none;
+        }
 
-        /* Bottom-Right Source */
-        .media-source-wrap { align-self: flex-end; text-align: right; margin-top: auto; }
-        .media-source-name { font-size: 0.85rem; font-weight: 800; color: var(--forest-green); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
+        /* Header Match */
+        .media-header-wrap { text-align: center; margin-bottom: 5rem; position: relative; z-index: 2; }
+        .media-label-top { 
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            font-size: 0.8rem; font-weight: 800; color: var(--forest-green); 
+            text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem;
+        }
+        .media-label-top::before, .media-label-top::after { content: ''; width: 30px; height: 2px; background: var(--accent-gold); }
         
-        /* Slider Dots */
-        .media-dots { display: flex; justify-content: center; gap: 10px; margin-top: 3rem; position: relative; z-index: 2; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
-        .dot.active { background: var(--gov-blue); width: 25px; border-radius: 5px; }
+        .media-header-wrap h2 { font-size: 3.5rem; font-weight: 900; color: #011222; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .media-header-divider { 
+            width: 100px; height: 5px; margin: 0 auto; border-radius: 3px; 
+            background: linear-gradient(to right, var(--accent-gold) 60%, var(--forest-green) 40%);
+        }
 
+        /* Carousel Structure */
+        .media-carousel-wrapper { max-width: 1300px; margin: 0 auto; position: relative; padding: 0 60px; z-index: 2; }
+        .media-viewport { overflow: hidden; }
+        .media-track { display: flex; transition: transform 0.5s ease-in-out; gap: 0; }
+
+        /* Card Match */
+        .media-slide { flex: 0 0 33.333%; padding: 0 15px; box-sizing: border-box; }
+        
+        .media-card-ref {
+            background: #ffffff; border: 1.5px solid #f1f5f9; border-radius: 12px;
+            padding: 2.25rem; height: 280px; display: flex; flex-direction: column;
+            box-shadow: 0 10px 40px -15px rgba(0,0,0,0.05); transition: all 0.3s ease;
+            text-decoration: none; position: relative;
+        }
+        .media-card-ref:hover { transform: translateY(-5px); border-color: #e2e8f0; box-shadow: 0 20px 50px -20px rgba(0,0,0,0.1); }
+
+        .card-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+        .media-outlet-logo { height: 40px; display: flex; align-items: center; }
+        .media-outlet-logo img { height: 100%; width: auto; object-fit: contain; }
+        .media-outlet-logo .logo-text { font-size: 1.25rem; font-weight: 900; color: #011222; }
+        
+        .external-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--forest-green); border-radius: 6px; background: rgba(6, 78, 59, 0.05); transition: all 0.3s; }
+        .media-card-ref:hover .external-icon { background: var(--forest-green); color: #ffffff; }
+
+        .card-dash { width: 25px; height: 3px; background: var(--accent-gold); margin-bottom: 1.5rem; border-radius: 2px; }
+        .media-ref-headline { font-size: 1.35rem; font-weight: 700; color: #1e293b; line-height: 1.4; margin: 0; }
+
+        /* Navigation Arrows */
+        .nav-btn {
+            position: absolute; top: 50%; width: 45px; height: 45px; border-radius: 50%;
+            background: #ffffff; border: 1px solid #e2e8f0; color: #64748b;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            z-index: 10; transform: translateY(-50%); transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .nav-btn:hover { background: var(--gov-blue); color: #ffffff; border-color: var(--gov-blue); }
+        .nav-btn.prev { left: 0; }
+        .nav-btn.next { right: 0; }
+
+        /* Dots Indicator */
+        .media-dots-ref { display: flex; justify-content: center; gap: 12px; margin-top: 3.5rem; }
+        .dot-ref { width: 10px; height: 10px; border-radius: 50%; background: #e2e8f0; cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+        .dot-ref.active { background: var(--forest-green); transform: scale(1.2); }
+
+        @@media (max-width: 1100px) {
+            .media-slide { flex: 0 0 50%; }
+            .media-header-wrap h2 { font-size: 2.75rem; }
+        }
         @@media (max-width: 768px) {
-            .media-section { padding: 4rem 0; }
-            .media-card-inner { padding: 2.5rem 2rem; min-height: 240px; }
-            .media-headline { font-size: 1.4rem; max-width: 100%; }
-            .media-title-wrap h2 { font-size: 1.85rem; }
+            .media-section { padding: 5rem 0; }
+            .media-slide { flex: 0 0 100%; }
+            .media-carousel-wrapper { padding: 0 40px; }
+            .media-card-ref { padding: 1.75rem; height: auto; min-height: 220px; }
+            .media-header-wrap h2 { font-size: 2.25rem; }
+            .nav-btn { width: 35px; height: 35px; font-size: 0.8rem; }
         }
 
         /* Responsiveness */
         @@media (max-width: 1366px) {
             .eada-english { font-size: 1.6rem; }
             .eada-hindi { font-size: 1.2rem; }
-            .eada-logo-main { height: 65px; }
-            .logo-item { height: 50px; }
+            .eada-logo-main { height: auto; }
             .min-hindi, .min-english { font-size: 0.95rem; }
             .branding-inner { gap: 1.5rem; }
         }
@@ -342,8 +412,7 @@
         @@media (max-width: 1100px) {
             .eada-english { font-size: 1.4rem; }
             .eada-hindi { font-size: 1.1rem; }
-            .eada-logo-main { height: 55px; }
-            .logo-item { height: 45px; }
+            .eada-logo-main { height: auto; }
             .branding-inner { gap: 1.25rem; }
             .brand-divider-v { height: 40px; }
         }
@@ -364,8 +433,7 @@
 
         @@media (max-width: 900px) {
             .eada-english { font-size: 1.15rem; }
-            .eada-logo-main { height: 45px; }
-            .logo-item { height: 36px; }
+            .eada-logo-main { height: auto; }
             .brand-divider-v { display: none; }
         }
 
@@ -390,9 +458,9 @@
             
             .min-hindi, .min-english { font-size: 0.9rem; }
             .eada-english { font-size: 1.5rem; }
-            .eada-logo-main { height: 55px; }
-            .logo-item { height: 38px; border: none !important; padding: 0 !important; }
-            .logo-item::after { display: none !important; }
+            .eada-logo-main { height: auto; }
+            .brand-logo-box { height: 45px; width: 65px; border: none !important; padding: 0 !important; }
+            .brand-logo-box::after { display: none !important; }
             
             .nav-inner { position: relative; display: flex; align-items: center; height: 56px; padding: 0 1.25rem; }
             .menu-toggle { 
@@ -571,7 +639,9 @@
             <!-- Left Side: EADA + Ministry Text -->
             <div class="brand-section branding-left">
                 <div class="eada-identity">
-                    <img src="/images/branding/logo_eada.png" alt="EADA" class="eada-logo-main">
+                    <div class="brand-logo-box">
+                        <img src="/images/branding/logo_eada.png" alt="EADA" class="eada-logo-main">
+                    </div>
                     <div class="eada-text-block">
                         <p class="eada-hindi">ई. ए. डी. ए.</p>
                         <p class="eada-english"><strong>EADA</strong></p>
@@ -579,6 +649,10 @@
                 </div>
                 
                 <div class="brand-divider-v"></div>
+
+                <div class="brand-logo-box">
+                    <img src="/images/branding/logo_moefcc.png" alt="MoEFCC">
+                </div>
 
                 <div class="ministry-text-block">
                     <p class="min-hindi">पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय</p>
@@ -588,18 +662,15 @@
 
             <!-- Right Side: All Logos Group -->
             <div class="brand-section branding-right">
-                <div class="logo-item">
-                    <img src="/images/branding/logo_emblem.png" alt="Emblem">
+                <div class="brand-logo-box life-logo">
+                    <img src="/images/branding/logo_life.png" alt="LiFE">
                 </div>
-                <div class="logo-item">
-                    <img src="/images/branding/logo_moefcc.png" alt="MoEFCC">
-                </div>
-                <div class="logo-item">
-                    <img src="/images/branding/logo_life.png" alt="LiFE" class="logo-life-refined">
-                </div>
-                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="logo-item">
+                <a href="https://www.npcindia.gov.in/NPC/User/index" target="_blank" class="brand-logo-box npc-logo">
                     <img src="/images/branding/logo_npc.png" alt="NPC">
                 </a>
+                <div class="brand-logo-box">
+                    <img src="/images/branding/logo_emblem.png" alt="Emblem">
+                </div>
             </div>
         </div>
     </div>
@@ -749,216 +820,317 @@
     </section>
 
     <section id="media-section" class="media-section">
-        <div class="media-title-wrap">
+        <div class="media-bg-ornament"></div>
+        <div class="media-bg-ornament-left"></div>
+
+        <div class="media-header-wrap">
+            <div class="media-label-top" data-i18n="mediaLabel">Media Coverage</div>
             <h2 data-i18n="mediaTitle">Media Coverage</h2>
-            <div class="media-title-divider"></div>
+            <div class="media-header-divider"></div>
         </div>
 
-        <div class="media-carousel-container">
+        <div class="media-carousel-wrapper">
+            <button class="nav-btn prev" id="media-prev" aria-label="Previous slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="nav-btn next" id="media-next" aria-label="Next slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+
             <div class="media-viewport">
                 <div class="media-track" id="media-track">
                     <!-- 1. Construction World -->
-                    <a href="https://www.constructionworld.in/policy-updates-and-economic-news/national-productivity-council-named-environment-audit-agency/88444" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">National Productivity Council named Environment Audit Agency</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Construction World</span>
+                    <div class="media-slide">
+                        <a href="https://www.constructionworld.in/policy-updates-and-economic-news/national-productivity-council-named-environment-audit-agency/88444" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #e11d48;">CW</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">CONSTRUCTION<br/>WORLD</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">National Productivity Council Named Environment Audit Agency</h3>
+                        </a>
+                    </div>
                     <!-- 2. First Construction Council -->
-                    <a href="https://firstconstructioncouncil.com/article/914774" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to play critical role in environmental auditing framework</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">First Construction</span>
+                    <div class="media-slide">
+                        <a href="https://firstconstructioncouncil.com/article/914774" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0f172a;">FCC</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">FIRST CONSTRUCTION<br/>COUNCIL</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Named Designated Agency for Environment Audit Framework</h3>
+                        </a>
+                    </div>
                     <!-- 3. Sanskriti IAS -->
-                    <a href="https://www.sanskritiias.com/hindi/current-affairs/national-productivity-council" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC appointed as Environment Audit Designated Agency</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Sanskriti IAS</span>
+                    <div class="media-slide">
+                        <a href="https://www.sanskritiias.com/hindi/current-affairs/national-productivity-council" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #f59e0b;">IAS</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">SANSKRITI<br/>IAS ACADEMY</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Appointed as Environment Audit Designated Agency</h3>
+                        </a>
+                    </div>
                     <!-- 4. Bankersadda -->
-                    <a href="https://www.bankersadda.com/daily-current-affairs-quiz-24th-march-2026-check-important-questions-here/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to strengthen environmental compliance across India</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Bankersadda</span>
+                    <div class="media-slide">
+                        <a href="https://www.bankersadda.com/daily-current-affairs-quiz-24th-march-2026-check-important-questions-here/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #2563eb;">BA</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">BANKERS<br/>ADDA 247</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">Daily Current Affairs: NPC Designated as Environment Audit Agency</h3>
+                        </a>
+                    </div>
                     <!-- 5. Hindustan Times -->
-                    <a href="https://www.hindustantimes.com/india-news/national-productivity-council-to-strengthen-environmental-compliance-mechanisms-101774084581634.html" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to strengthen environmental compliance mechanisms</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Hindustan Times</span>
+                    <div class="media-slide">
+                        <a href="https://www.hindustantimes.com/india-news/national-productivity-council-to-strengthen-environmental-compliance-mechanisms-101774084581634.html" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0c4a6e;">HT</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">HINDUSTAN<br/>TIMES</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC to Strengthen Environmental Compliance Mechanisms</h3>
+                        </a>
+                    </div>
                     <!-- 6. Deccan Chronicle -->
-                    <a href="https://www.deccanchronicle.com/nation/in-other-news/npc-to-act-as-designated-agency-for-environment-audit-1945349" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to act as designated agency for environment audit</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Deccan Chronicle</span>
+                    <div class="media-slide">
+                        <a href="https://www.deccanchronicle.com/nation/in-other-news/npc-to-act-as-designated-agency-for-environment-audit-1945349" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0f172a;">DC</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">DECCAN<br/>CHRONICLE</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC to Act as Designated Agency for Environment Audit</h3>
+                        </a>
+                    </div>
                     <!-- 7. Financial Express -->
-                    <a href="https://www.financialexpress.com/business/news/productivity-council-will-manage-environment-audit-framework/4180024/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">Productivity Council will manage environment audit framework</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Financial Express</span>
+                    <div class="media-slide">
+                        <a href="https://www.financialexpress.com/business/news/productivity-council-will-manage-environment-audit-framework/4180024/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0c4a6e;">FE</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">FINANCIAL<br/>EXPRESS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">Productivity Council Will Manage Environment Audit Framework</h3>
+                        </a>
+                    </div>
                     <!-- 8. Ziraat Times -->
-                    <a href="https://ziraattimes.com/2026/03/npc-appointed-as-environment-audit-agency-to-strengthen-compliance-across-india/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC appointed as Environment Audit Agency to strengthen compliance</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Ziraat Times</span>
+                    <div class="media-slide">
+                        <a href="https://ziraattimes.com/2026/03/npc-appointed-as-environment-audit-agency-to-strengthen-compliance-across-india/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #065f46;">ZT</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">ZIRAAT<br/>TIMES</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Appointed as Environment Audit Agency to Strengthen Compliance</h3>
+                        </a>
+                    </div>
                     <!-- 9. ABC Live -->
-                    <a href="https://abclive.in/2026/03/21/npc-environment-audit-designated-agency-critical-analysis/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC Environment Audit Designated Agency : A Critical Analysis</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">ABC Live</span>
+                    <div class="media-slide">
+                        <a href="https://abclive.in/2026/03/21/npc-environment-audit-designated-agency-critical-analysis/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #e11d48;">ABC</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">ABC<br/>LIVE</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Environment Audit Designated Agency : A Critical Analysis</h3>
+                        </a>
+                    </div>
                     <!-- 10. Devdiscourse -->
-                    <a href="https://www.devdiscourse.com/article/science-environment/3845716-national-productivity-council-champions-environmental-auditing" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC champions environmental auditing across India</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Devdiscourse</span>
+                    <div class="media-slide">
+                        <a href="https://www.devdiscourse.com/article/science-environment/3845716-national-productivity-council-champions-environmental-auditing" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #2563eb;">DEV</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">DEVDISCOURSE<br/>NEWS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Champions Environmental Auditing Across India</h3>
+                        </a>
+                    </div>
                     <!-- 11. MSN -->
-                    <a href="https://www.msn.com/en-in/news/India/national-productivity-council-to-strengthen-environmental-compliance-mechanisms/ar-AA1Z6hAo" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to lead national environmental audit framework</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">MSN</span>
+                    <div class="media-slide">
+                        <a href="https://www.msn.com/en-in/news/India/national-productivity-council-to-strengthen-environmental-compliance-mechanisms/ar-AA1Z6hAo" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #2563eb;">MSN</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">MSN<br/>INDIA</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC to Lead National Environmental Audit Framework</h3>
+                        </a>
+                    </div>
                     <!-- 12. The Balanced News -->
-                    <a href="https://thebalanced.news/politics/ce8a26cd-2e3b-46eb-90de-20291441f779/national-productivity-council-designated-as-environment-audit-agency-under-2025-rules" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC designated as Environment Audit Agency under 2025 Rules</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">The Balanced News</span>
+                    <div class="media-slide">
+                        <a href="https://thebalanced.news/politics/ce8a26cd-2e3b-46eb-90de-20291441f779/national-productivity-council-designated-as-environment-audit-agency-under-2025-rules" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0f172a;">BN</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">THE BALANCED<br/>NEWS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Designated as Environment Audit Agency Under 2025 Rules</h3>
+                        </a>
+                    </div>
                     <!-- 13. The News Hour -->
-                    <a href="https://www.thenewshour.org/other-news/npc-signs-agreement-with-ministry-of-environment-forest-and-climate-change-moefcc-to-act-as-environment-audit-designated-agency/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC signs agreement with MoEFCC for environment audit</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">The News Hour</span>
+                    <div class="media-slide">
+                        <a href="https://www.thenewshour.org/other-news/npc-signs-agreement-with-ministry-of-environment-forest-and-climate-change-moefcc-to-act-as-environment-audit-designated-agency/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #e11d48;">NH</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">THE NEWS<br/>HOUR</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC Signs Agreement with MoEFCC for National Environment Audit</h3>
+                        </a>
+                    </div>
                     <!-- 14. Current Affairs (Adda247) -->
-                    <a href="https://currentaffairs.adda247.com/what-the-npc-moefcc-agreement-means-for-environmental-governance/" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">What the NPC-MoEFCC agreement means for environmental governance</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Adda247</span>
+                    <div class="media-slide">
+                        <a href="https://currentaffairs.adda247.com/what-the-npc-moefcc-agreement-means-for-environmental-governance/" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #f59e0b;">A247</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">CURRENT<br/>AFFAIRS ADDA</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">What the NPC-MoEFCC Agreement Means for Environmental Governance</h3>
+                        </a>
+                    </div>
                     <!-- 15. IBC24 -->
-                    <a href="https://www.ibc24.in/country/national-productivity-council-to-act-as-nodal-agency-for-environmental-audit-3518741.html" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to act as nodal agency for environmental audit</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">IBC24</span>
+                    <div class="media-slide">
+                        <a href="https://www.ibc24.in/country/national-productivity-council-to-act-as-nodal-agency-for-environmental-audit-3518741.html" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #e11d48;">IBC</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">IBC24<br/>NEWS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">NPC to Act as Nodal Agency for Environmental Audit</h3>
+                        </a>
+                    </div>
                     <!-- 16. TaxTMI -->
-                    <a href="https://www.taxtmi.com/news?id=71657" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">Environment Audit Rules 2025: NPC named Designated Agency</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">TaxTMI</span>
+                    <div class="media-slide">
+                        <a href="https://www.taxtmi.com/news?id=71657" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0c4a6e;">TMI</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">TAX TMI<br/>REPORTS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">Environment Audit Rules 2025: NPC Named Designated Agency</h3>
+                        </a>
+                    </div>
                     <!-- 17. Magzter -->
-                    <a href="https://www.magzter.com/stories/newspaper/Financial-Express-Mumbai/PRODUCTIVITY-COUNCIL-TO-MANAGE-ENVIRONMENT-AUDIT-FRAMEWORK" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">Productivity Council will manage environmental framework</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">Magzter</span>
+                    <div class="media-slide">
+                        <a href="https://www.magzter.com/stories/newspaper/Financial-Express-Mumbai/PRODUCTIVITY-COUNCIL-TO-MANAGE-ENVIRONMENT-AUDIT-FRAMEWORK" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #0c4a6e;">MAG</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">MAGZTER<br/>PUBLICATIONS</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">Productivity Council Will Manage Environment Audit Framework</h3>
+                        </a>
+                    </div>
                     <!-- 18. The Week -->
-                    <a href="https://www.theweek.in/wire-updates/national/2026/03/21/national-productivity-council-to-act-as-designated-agency-for-environment-audit.html" target="_blank" rel="noopener noreferrer" class="media-card">
-                        <article class="media-card-inner">
-                            <div class="card-decoration">“</div>
-                            <div class="card-accent-line"></div>
-                            <h3 class="media-headline">NPC to act as designated agency for environment audit</h3>
-                            <div class="media-source-wrap">
-                                <span class="media-source-name">The Week</span>
+                    <div class="media-slide">
+                        <a href="https://www.theweek.in/wire-updates/national/2026/03/21/national-productivity-council-to-act-as-designated-agency-for-environment-audit.html" target="_blank" rel="noopener noreferrer" class="media-card-ref">
+                            <div class="card-top-row">
+                                <div class="media-outlet-logo">
+                                    <span class="logo-text" style="color: #e11d48;">WEEK</span>
+                                    <span style="font-size: 0.75rem; font-weight: 800; margin-left: 6px; line-height: 1.1;">THE WEEK<br/>MAGAZINE</span>
+                                </div>
+                                <div class="external-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
                             </div>
-                        </article>
-                    </a>
+                            <div class="card-dash"></div>
+                            <h3 class="media-ref-headline">National Productivity Council to Act as Designated Agency for Environment Audit</h3>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="media-dots" id="media-dots"></div>
+            <div class="media-dots-ref" id="media-dots"></div>
         </div>
     </section>
 
@@ -1286,33 +1458,72 @@
             const savedLang = localStorage.getItem('eada_lang') || 'en';
             setLanguage(savedLang);
 
-            // --- Media Slider Logic ---
+            // --- Media Slider Logic (Reference Match) ---
             const mediaTrack = document.getElementById('media-track');
-            const mediaCards = document.querySelectorAll('.media-card');
+            const mediaSlides = document.querySelectorAll('.media-slide');
             const mediaDotsContainer = document.getElementById('media-dots');
+            const prevBtn = document.getElementById('media-prev');
+            const nextBtn = document.getElementById('media-next');
+            
             let mediaIndex = 0;
             let mediaInterval;
+            
+            function getItemsPerView() {
+                if (window.innerWidth <= 768) return 1;
+                if (window.innerWidth <= 1100) return 2;
+                return 3;
+            }
 
-            if (mediaTrack && mediaCards.length > 0) {
+            function getMaxIndex() {
+                return mediaSlides.length - getItemsPerView();
+            }
+
+            if (mediaTrack && mediaSlides.length > 0) {
                 // Create Dots
-                mediaCards.forEach((_, i) => {
-                    const dot = document.createElement('button');
-                    dot.classList.add('dot');
-                    if (i === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => goToMediaSlide(i));
-                    mediaDotsContainer.appendChild(dot);
-                });
-
-                const dots = document.querySelectorAll('.media-dots .dot');
+                function setupDots() {
+                    mediaDotsContainer.innerHTML = '';
+                    const itemsPerView = getItemsPerView();
+                    const dotCount = mediaSlides.length - itemsPerView + 1;
+                    
+                    for (let i = 0; i < dotCount; i++) {
+                        const dot = document.createElement('button');
+                        dot.classList.add('dot-ref');
+                        if (i === 0) dot.classList.add('active');
+                        dot.addEventListener('click', () => goToMediaSlide(i));
+                        mediaDotsContainer.appendChild(dot);
+                    }
+                }
 
                 function updateMediaSlider() {
-                    mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
+                    const itemsPerView = getItemsPerView();
+                    const offset = mediaIndex * (100 / itemsPerView);
+                    mediaTrack.style.transform = `translateX(-${offset}%)`;
+                    
+                    const dots = document.querySelectorAll('.dot-ref');
                     dots.forEach((d, i) => d.classList.toggle('active', i === mediaIndex));
+                    
+                    // Disable/Enable Arrows
+                    prevBtn.style.opacity = mediaIndex === 0 ? '0.3' : '1';
+                    prevBtn.style.pointerEvents = mediaIndex === 0 ? 'none' : 'auto';
+                    nextBtn.style.opacity = mediaIndex >= getMaxIndex() ? '0.3' : '1';
+                    nextBtn.style.pointerEvents = mediaIndex >= getMaxIndex() ? 'none' : 'auto';
                 }
 
                 function nextMediaSlide() {
-                    mediaIndex = (mediaIndex + 1) % mediaCards.length;
+                    if (mediaIndex < getMaxIndex()) {
+                        mediaIndex++;
+                    } else {
+                        mediaIndex = 0; // Loop back
+                    }
                     updateMediaSlider();
+                }
+
+                function prevMediaSlide() {
+                    if (mediaIndex > 0) {
+                        mediaIndex--;
+                        updateMediaSlider();
+                        resetMediaInterval();
+                    }
                 }
 
                 function goToMediaSlide(index) {
@@ -1326,7 +1537,26 @@
                     mediaInterval = setInterval(nextMediaSlide, 6000);
                 }
 
-                // Start Autoplay
+                // Event Listeners
+                nextBtn?.addEventListener('click', () => {
+                    nextMediaSlide();
+                    resetMediaInterval();
+                });
+                prevBtn?.addEventListener('click', () => {
+                    prevMediaSlide();
+                    resetMediaInterval();
+                });
+
+                window.addEventListener('resize', () => {
+                    const max = getMaxIndex();
+                    if (mediaIndex > max) mediaIndex = max;
+                    setupDots();
+                    updateMediaSlider();
+                });
+
+                // Init
+                setupDots();
+                updateMediaSlider();
                 mediaInterval = setInterval(nextMediaSlide, 6000);
 
                 // Pause on hover
