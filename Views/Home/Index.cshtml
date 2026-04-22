@@ -292,7 +292,7 @@
         
         /* --- Media Coverage Section (Reference Match) --- */
         .media-section { 
-            padding: 8rem 0; 
+            padding: 4rem 0; 
             background-color: #fcfdfe;
             border-top: 1px solid var(--border-light); 
             border-bottom: 1px solid var(--border-light); 
@@ -329,7 +329,7 @@
         }
 
         /* Header Match */
-        .media-header-wrap { text-align: center; margin-bottom: 5rem; position: relative; z-index: 2; }
+        .media-header-wrap { text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 2; }
         .media-label-top { 
             display: flex; align-items: center; justify-content: center; gap: 12px;
             font-size: 0.8rem; font-weight: 800; color: var(--forest-green); 
@@ -337,7 +337,7 @@
         }
         .media-label-top::before, .media-label-top::after { content: ''; width: 30px; height: 2px; background: var(--accent-gold); }
         
-        .media-header-wrap h2 { font-size: 3.5rem; font-weight: 900; color: #011222; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .media-header-wrap h2 { font-size: 3.5rem; font-weight: 900; color: #011222; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
         .media-header-divider { 
             width: 100px; height: 5px; margin: 0 auto; border-radius: 3px; 
             background: linear-gradient(to right, var(--accent-gold) 60%, var(--forest-green) 40%);
@@ -383,7 +383,7 @@
         .nav-btn.next { right: 0; }
 
         /* Dots Indicator */
-        .media-dots-ref { display: flex; justify-content: center; gap: 12px; margin-top: 3.5rem; }
+        .media-dots-ref { display: flex; justify-content: center; gap: 12px; margin-top: 1.5rem; }
         .dot-ref { width: 10px; height: 10px; border-radius: 50%; background: #e2e8f0; cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
         .dot-ref.active { background: var(--forest-green); transform: scale(1.2); }
 
@@ -392,12 +392,14 @@
             .media-header-wrap h2 { font-size: 2.75rem; }
         }
         @@media (max-width: 768px) {
-            .media-section { padding: 5rem 0; }
+            .media-section { padding: 3rem 0; }
             .media-slide { flex: 0 0 100%; }
             .media-carousel-wrapper { padding: 0 40px; }
             .media-card-ref { padding: 1.75rem; height: auto; min-height: 220px; }
             .media-header-wrap h2 { font-size: 2.25rem; }
             .nav-btn { width: 35px; height: 35px; font-size: 0.8rem; }
+            .media-dots-ref { gap: 8px; margin-top: 1.25rem; }
+            .dot-ref { width: 8px; height: 8px; }
         }
 
         /* Responsiveness */
@@ -450,8 +452,8 @@
             .util-dropdown-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
             
             .branding-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .branding-left, .branding-right { width: 100%; justify-content: center; flex-direction: column; border: none; padding: 0; gap: 0.85rem; }
-            .eada-identity { width: 100%; justify-content: center; }
+            .branding-left, .branding-right { width: 100%; justify-content: center; flex-direction: row; flex-wrap: wrap; border: none; padding: 0; gap: 1.25rem; }
+            .eada-identity { width: auto; justify-content: center; }
             .brand-divider-v { display: none; }
             .ministry-text-block { width: 100%; text-align: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem; }
             .branding-right { flex-direction: row; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border-light); gap: 1rem; }
@@ -824,7 +826,6 @@
         <div class="media-bg-ornament-left"></div>
 
         <div class="media-header-wrap">
-            <div class="media-label-top" data-i18n="mediaLabel">Media Coverage</div>
             <h2 data-i18n="mediaTitle">Media Coverage</h2>
             <div class="media-header-divider"></div>
         </div>
