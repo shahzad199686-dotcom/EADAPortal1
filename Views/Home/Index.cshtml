@@ -276,14 +276,13 @@
         /* --- Footer --- */
         footer { background: var(--gov-blue); color: #e2e8f0; padding: 4rem 5% 2rem; border-top: none; width: 100%; }
         .footer-fluid-wrapper { width: 100%; max-width: 1600px; margin: 0 auto; }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; width: 100%; }
-        .footer-about-top { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 0; }
-        .footer-logo-box { width: 75px; height: 75px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; overflow: hidden; padding: 8px; flex-shrink: 0; }
-        .footer-logo-box img { width: 100%; height: auto; display: block; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; margin-bottom: 3rem; width: 100%; align-items: start; }
         .footer-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #ffffff; }
-        .footer-desc { font-size: 0.9rem; line-height: 1.6; color: #cbd5e1; max-width: 450px; }
         
-        .footer-heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.25rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; }
+        .footer-heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.5rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; }
+        .footer-map-card { width: 100%; height: 120px; border-radius: 8px; overflow: hidden; margin-top: 0.5rem; display: block; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .footer-map-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .footer-map-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
         .footer-links a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .footer-links a:hover { color: #ffffff; text-decoration: underline; }
@@ -1169,15 +1168,7 @@
     <footer id="contact-section">
         <div class="footer-fluid-wrapper">
             <div class="footer-grid">
-                <div>
-                    <div class="footer-about-top">
-                        <div class="footer-logo-box">
-                            <img src="/images/branding/logo_eada.png" alt="EADA Logo" />
-                        </div>
-                        <h3 class="footer-title" data-i18n="footerTitle">Environment Audit Designated Agency</h3>
-                    </div>
-                    <p class="footer-desc" data-i18n="footerDesc">EADA is an initiative of the Ministry of Environment, Forest and Climate Change (MoEF&CC), Government of India.</p>
-                </div>
+                <!-- Column 1: QUICK LINKS -->
                 <div>
                     <h4 class="footer-heading" data-i18n="ftQuick">Quick Links</h4>
                     <ul class="footer-links">
@@ -1187,26 +1178,40 @@
                         <li><a href="#" data-i18n="ftNotices">Notices & Circulars</a></li>
                     </ul>
                 </div>
+
+                <!-- Column 2: CONTACT US -->
                 <div>
                     <h4 class="footer-heading" data-i18n="ftContact">Contact Us</h4>
                     <div class="footer-contact">
                         <p><strong data-i18n="ftPhone">Phone:</strong> 01124607306</p>
                         <p><strong data-i18n="ftEmail">Email:</strong> <a href="mailto:eada.npc@npcindia.gov.in" style="color: #cbd5e1; text-decoration: none;">eada.npc&#64;npcindia.gov.in</a></p>
-                        
-                        <div style="margin-top: 1.25rem;">
-                            <p style="font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; margin: 0;">
-                                <strong style="color: #ffffff; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">Address:</strong>
-                                Environment Audit Designated Agency<br />
-                                VIKRAM SARABHAI BLOCK<br />
-                                National Productivity Council,<br />
-                                Utpadakta Bhavan, 5-6, Institutional Area, Lodhi Rd,  Lodi Colony, New Delhi, Delhi 110003
-                            </p>
-                        </div>
                     </div>
+                </div>
+
+                <!-- Column 3: Address -->
+                <div>
+                    <h4 class="footer-heading" data-i18n="ftAddress">Address</h4>
+                    <div class="footer-contact">
+                        <p style="font-size: 0.9rem; line-height: 1.6; color: #cbd5e1; margin: 0;">
+                            Environment Audit Designated Agency<br />
+                            VIKRAM SARABHAI BLOCK<br />
+                            National Productivity Council,<br />
+                            Utpadakta Bhavan, 5-6, Institutional Area, Lodhi Rd, Lodi Colony, New Delhi, Delhi 110003
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Column 4: Map View -->
+                <div>
+                    <h4 class="footer-heading" data-i18n="ftMap">Map View</h4>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Environment+Audit+Designated+Agency+VIKRAM+SARABHAI+BLOCK+National+Productivity+Council+Utpadakta+Bhavan+5-6+Institutional+Area+Lodhi+Rd+New+Delhi+Delhi+110003" 
+                       target="_blank" rel="noopener noreferrer" class="footer-map-card">
+                        <img src="/images/footer-map.png" alt="EADA Location Map" />
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom" data-i18n="ftCopyright">
-                &copy; 2026 Environment Audit Designated Agency. All Rights Reserved. | Government of India
+                &copy; 2026 Environment Audit Designated Agency. All Rights Reserved.
             </div>
         </div>
     </footer>
@@ -1401,9 +1406,11 @@
                 ftCopy: 'Copyright Policy',
                 ftHyper: 'Hyperlinking Policy',
                 ftContact: 'Contact Us',
+                ftAddress: 'Address',
+                ftMap: 'Map View',
                 ftEmail: 'Email:',
                 ftPhone: 'Phone:',
-                ftCopyright: '&copy; 2026 Environment Audit Designated Agency. All Rights Reserved. | Government of India'
+                ftCopyright: '&copy; 2026 Environment Audit Designated Agency. All Rights Reserved.'
             },
             hi: {
                 ministryTitle: 'पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय',
@@ -1463,9 +1470,11 @@
                 ftCopy: 'कॉपीराइट नीति',
                 ftHyper: 'हाइपरलिंकिंग नीति',
                 ftContact: 'संपर्क करें',
+                ftAddress: 'पता',
+                ftMap: 'मैप व्यू',
                 ftEmail: 'ईमेल:',
                 ftPhone: 'फोन:',
-                ftCopyright: '&copy; 2026 पर्यावरण लेखापरीक्षा नामित एजेंसी। सर्वाधिकार सुरक्षित। | भारत सरकार'
+                ftCopyright: '&copy; 2026 पर्यावरण लेखापरीक्षा नामित एजेंसी। सर्वाधिकार सुरक्षित।'
             }
         };
 
